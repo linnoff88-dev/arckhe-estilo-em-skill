@@ -1,0 +1,14 @@
+# saída de trabalho (na raiz e dentro das pastas de projeto)
+/saida/
+/final/
+**/saida/clipes/
+**/saida/voz/falas/
+**/saida/video-mudo.mp4
+*.part
+__pycache__/
+*.pyc
+tests/tmp/
+exemplos/*/logs/
+# demo: painéis em PNG (26 MB) ficam fora; cópia leve em exemplos/cordel/paineis-jpg/
+exemplos/*/saida/paineis/*.png
+**/saida/voz/narracao-crua.wav

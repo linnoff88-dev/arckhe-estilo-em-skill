@@ -1,0 +1,26 @@
+Crie UMA imagem quadrada (1:1) que é um storyboard em grade de 2 linha(s) × 3 coluna(s),
+com 6 painéis do mesmo tamanho. Cada painel tem proporção 9:16 (vertical, alto e estreito). Entre os painéis e em volta deles,
+uma calha lisa de cor única (creme lisa e uniforme, sem textura), sem nenhum desenho. Leitura: da esquerda para a direita, de cima
+para baixo.
+
+ESTILO (vale para todos os painéis, sem exceção): Xilogravura de cordel nordestino brasileiro impressa em papel creme envelhecido com fibras visíveis (#F4D7A1); tinta preta chapada (#130F0A) com traço de goiva irregular, massas grandes de preto sólido e hachuras paralelas de goiva para dar volume; cor só em poucas áreas chapadas de ocre (#C8902E) e vermelho terroso (#A8432B); um cordão amarelo grosso de corda torcida (#F2C230) é o único elemento amarelo e atravessa a cena de uma borda à outra; preto sólido cobre pelo menos um terço de cada painel (sombras, roupas, chão ou fundo), com alto contraste de gravura; letras de bloco entalhadas em madeira, MAIÚSCULAS, pretas, ultra-grossas, com bordas mordidas, centradas e ocupando no máximo 60% da largura do painel; cada painel com moldura de filete preto irregular. Sem gradiente, sem 3D, sem brilho, sem fotografia, sem cor fora da paleta, sem marca d'água, sem assinatura.
+
+TEXTO: em cada painel, só UMA palavra grande em maiúsculas, escrita exatamente como indicada abaixo, sem letras
+trocadas. A palavra ocupa NO MÁXIMO 60% da largura do painel, centrada, com margem livre dos dois lados (nunca
+de borda a borda). Nenhum outro texto na imagem: sem números de
+painel, sem legendas, sem balões, sem assinatura, sem marca d'água.
+
+FIO CONDUTOR: um cordão amarelo grosso (#F2C230), com textura de corda torcida, que passa por dentro do assunto (laço, nó, costura) e liga uma cena à outra. Ele entra por uma borda de cada painel e sai pela borda que leva ao painel seguinte.
+Use a imagem anexada como referência de estilo, cores e personagem. O fio continua de onde parou no último painel da imagem anexada: entra no painel 1 pela borda esquerda, na mesma altura.
+
+PERSONAGEM (igual em todos os painéis): uma mulher de uns 40 anos, lenço vermelho terroso amarrado na cabeça, camisa ocre de manga curta, rosto de perfil com nariz marcado; e um ajudante mecânico de madeira entalhada (o agente de IA), corpo de caixote, cabeça quadrada com dois olhos redondos de prego e uma antena curta, braços articulados
+
+PAINÉIS:
+Painel 1 — palavra "FAZ". Cena: o ajudante carimbando muito rápido uma pilha de papéis, a mulher ao lado tomando café.
+Painel 2 — palavra "CONFERE". Cena: o ajudante olhando um papel com uma lupa grande.
+Painel 3 — palavra "AVISA". Cena: o ajudante tocando um sino de mão e entregando um bilhete dobrado para a mulher.
+Painel 4 — palavra "TEMPO". Cena: a mulher deitada numa rede entre dois troncos, sol grande atrás.
+Painel 5 — palavra "CRIAR". Cena: a mulher entalhando uma matriz de madeira com goiva, concentrada e sorrindo.
+Painel 6 — palavra "LIVRE". Cena: a mulher e o ajudante de costas olhando o horizonte com sol nascendo.
+
+Assunto e palavras perto do centro de cada painel: o vídeo vai cortar um pouco das bordas e dar zoom.

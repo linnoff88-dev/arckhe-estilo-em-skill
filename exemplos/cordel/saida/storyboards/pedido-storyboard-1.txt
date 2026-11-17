@@ -1,0 +1,26 @@
+Crie UMA imagem quadrada (1:1) que é um storyboard em grade de 2 linha(s) × 3 coluna(s),
+com 6 painéis do mesmo tamanho. Cada painel tem proporção 9:16 (vertical, alto e estreito). Entre os painéis e em volta deles,
+uma calha lisa de cor única (creme lisa e uniforme, sem textura), sem nenhum desenho. Leitura: da esquerda para a direita, de cima
+para baixo.
+
+ESTILO (vale para todos os painéis, sem exceção): Xilogravura de cordel nordestino brasileiro impressa em papel creme envelhecido com fibras visíveis (#F4D7A1); tinta preta chapada (#130F0A) com traço de goiva irregular, massas grandes de preto sólido e hachuras paralelas de goiva para dar volume; cor só em poucas áreas chapadas de ocre (#C8902E) e vermelho terroso (#A8432B); um cordão amarelo grosso de corda torcida (#F2C230) é o único elemento amarelo e atravessa a cena de uma borda à outra; preto sólido cobre pelo menos um terço de cada painel (sombras, roupas, chão ou fundo), com alto contraste de gravura; letras de bloco entalhadas em madeira, MAIÚSCULAS, pretas, ultra-grossas, com bordas mordidas, centradas e ocupando no máximo 60% da largura do painel; cada painel com moldura de filete preto irregular. Sem gradiente, sem 3D, sem brilho, sem fotografia, sem cor fora da paleta, sem marca d'água, sem assinatura.
+
+TEXTO: em cada painel, só UMA palavra grande em maiúsculas, escrita exatamente como indicada abaixo, sem letras
+trocadas. A palavra ocupa NO MÁXIMO 60% da largura do painel, centrada, com margem livre dos dois lados (nunca
+de borda a borda). Nenhum outro texto na imagem: sem números de
+painel, sem legendas, sem balões, sem assinatura, sem marca d'água.
+
+FIO CONDUTOR: um cordão amarelo grosso (#F2C230), com textura de corda torcida, que passa por dentro do assunto (laço, nó, costura) e liga uma cena à outra. Ele entra por uma borda de cada painel e sai pela borda que leva ao painel seguinte.
+O fio começa no painel 1 entrando pela borda esquerda.
+
+PERSONAGEM (igual em todos os painéis): uma mulher de uns 40 anos, lenço vermelho terroso amarrado na cabeça, camisa ocre de manga curta, rosto de perfil com nariz marcado; e um ajudante mecânico de madeira entalhada (o agente de IA), corpo de caixote, cabeça quadrada com dois olhos redondos de prego e uma antena curta, braços articulados
+
+PAINÉIS:
+Painel 1 — palavra "REPETIR". Cena: a mulher sentada atrás de pilhas altas de papéis iguais, carimbando um por um, cara de cansaço.
+Painel 2 — palavra "COPIAR". Cena: close das mãos da mulher passando linhas de um caderno para outro caderno idêntico.
+Painel 3 — palavra "HORAS". Cena: um relógio de parede grande com ponteiros entalhados, folhas de papel voando em volta.
+Painel 4 — palavra "AGENTE". Cena: o ajudante mecânico de madeira aparece de frente, acenando, a mulher olha surpresa.
+Painel 5 — palavra "ENSINA". Cena: a mulher apontando um papel, o ajudante ouvindo com a cabeça inclinada.
+Painel 6 — palavra "REGRAS". Cena: o ajudante escrevendo com uma pena num rolo de papel comprido.
+
+Assunto e palavras perto do centro de cada painel: o vídeo vai cortar um pouco das bordas e dar zoom.

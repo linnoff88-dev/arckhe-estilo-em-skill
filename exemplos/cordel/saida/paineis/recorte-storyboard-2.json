@@ -1,0 +1,72 @@
+{
+  "storyboard": "saida/storyboards/storyboard-2.png",
+  "linhas": 2,
+  "colunas": 3,
+  "paineis": [
+    {
+      "arquivo": "saida/paineis/cena-07.png",
+      "origem_px": [
+        65,
+        26,
+        432,
+        620
+      ]
+    },
+    {
+      "arquivo": "saida/paineis/cena-08.png",
+      "origem_px": [
+        439,
+        26,
+        807,
+        620
+      ]
+    },
+    {
+      "arquivo": "saida/paineis/cena-09.png",
+      "origem_px": [
+        820,
+        26,
+        1190,
+        620
+      ]
+    },
+    {
+      "arquivo": "saida/paineis/cena-10.png",
+      "origem_px": [
+        65,
+        635,
+        432,
+        1229
+      ]
+    },
+    {
+      "arquivo": "saida/paineis/cena-11.png",
+      "origem_px": [
+        439,
+        635,
+        808,
+        1229
+      ]
+    },
+    {
+      "arquivo": "saida/paineis/cena-12.png",
+      "origem_px": [
+        821,
+        635,
+        1191,
+        1229
+      ]
+    }
+  ],
+  "respiro": 0.08,
+  "cor_calha": "#FDDFAA",
+  "metodo": "calha",
+  "tamanho_storyboard": [
+    1254,
+    1254
+  ],
+  "tamanho_painel_origem": [
+    367,
+    594
+  ]
+}

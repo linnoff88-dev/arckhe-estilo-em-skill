@@ -1,0 +1,211 @@
+{
+  "versao": 1,
+  "tema": "Como um agente de IA tira o trabalho repetido do seu dia",
+  "formato": "9:16",
+  "resolucao": "1080x1920",
+  "fps": 30,
+  "motor": "local",
+  "cena_s": 2.5,
+  "duracao_pedida_s": 30.0,
+  "duracao_s": 30.0,
+  "n_cenas": 12,
+  "n_storyboards": 2,
+  "cenas_por_storyboard": [
+    6,
+    6
+  ],
+  "normalizada": false,
+  "storyboards": [
+    {
+      "numero": 1,
+      "arquivo": "saida/storyboards/storyboard-1.png",
+      "cenas": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "linhas": 2,
+      "colunas": 3,
+      "paineis": 6,
+      "continua_de": null
+    },
+    {
+      "numero": 2,
+      "arquivo": "saida/storyboards/storyboard-2.png",
+      "cenas": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "linhas": 2,
+      "colunas": 3,
+      "paineis": 6,
+      "continua_de": 1
+    }
+  ],
+  "cenas": [
+    {
+      "numero": 1,
+      "inicio_s": 0.0,
+      "fim_s": 2.5,
+      "storyboard": 1,
+      "painel": 1,
+      "texto_tela": "REPETIR",
+      "acao": "a mulher sentada atrás de pilhas altas de papéis iguais, carimbando um por um, cara de cansaço",
+      "camera": "zoom_in",
+      "transicao_entrada": "corte",
+      "transicao_saida": "dissolve",
+      "fala": "Cansou de repetir tudo todo dia?"
+    },
+    {
+      "numero": 2,
+      "inicio_s": 2.5,
+      "fim_s": 5.0,
+      "storyboard": 1,
+      "painel": 2,
+      "texto_tela": "COPIAR",
+      "acao": "close das mãos da mulher passando linhas de um caderno para outro caderno idêntico",
+      "camera": "pan_direita",
+      "transicao_entrada": "dissolve",
+      "transicao_saida": "dissolve",
+      "fala": "Copiar, colar, conferir, de novo."
+    },
+    {
+      "numero": 3,
+      "inicio_s": 5.0,
+      "fim_s": 7.5,
+      "storyboard": 1,
+      "painel": 3,
+      "texto_tela": "HORAS",
+      "acao": "um relógio de parede grande com ponteiros entalhados, folhas de papel voando em volta",
+      "camera": "zoom_out",
+      "transicao_entrada": "dissolve",
+      "transicao_saida": "dissolve",
+      "fala": "São horas que viram nada."
+    },
+    {
+      "numero": 4,
+      "inicio_s": 7.5,
+      "fim_s": 10.0,
+      "storyboard": 1,
+      "painel": 4,
+      "texto_tela": "AGENTE",
+      "acao": "o ajudante mecânico de madeira aparece de frente, acenando, a mulher olha surpresa",
+      "camera": "pan_esquerda",
+      "transicao_entrada": "dissolve",
+      "transicao_saida": "dissolve",
+      "fala": "Um agente de IA faz isso."
+    },
+    {
+      "numero": 5,
+      "inicio_s": 10.0,
+      "fim_s": 12.5,
+      "storyboard": 1,
+      "painel": 5,
+      "texto_tela": "ENSINA",
+      "acao": "a mulher apontando um papel, o ajudante ouvindo com a cabeça inclinada",
+      "camera": "zoom_in",
+      "transicao_entrada": "dissolve",
+      "transicao_saida": "dissolve",
+      "fala": "Você explica uma vez só."
+    },
+    {
+      "numero": 6,
+      "inicio_s": 12.5,
+      "fim_s": 15.0,
+      "storyboard": 1,
+      "painel": 6,
+      "texto_tela": "REGRAS",
+      "acao": "o ajudante escrevendo com uma pena num rolo de papel comprido",
+      "camera": "pan_cima",
+      "transicao_entrada": "dissolve",
+      "transicao_saida": "dissolve",
+      "fala": "Ele anota as suas regras."
+    },
+    {
+      "numero": 7,
+      "inicio_s": 15.0,
+      "fim_s": 17.5,
+      "storyboard": 2,
+      "painel": 1,
+      "texto_tela": "FAZ",
+      "acao": "o ajudante carimbando muito rápido uma pilha de papéis, a mulher ao lado tomando café",
+      "camera": "zoom_out",
+      "transicao_entrada": "dissolve",
+      "transicao_saida": "dissolve",
+      "fala": "E repete sem cansar."
+    },
+    {
+      "numero": 8,
+      "inicio_s": 17.5,
+      "fim_s": 20.0,
+      "storyboard": 2,
+      "painel": 2,
+      "texto_tela": "CONFERE",
+      "acao": "o ajudante olhando um papel com uma lupa grande",
+      "camera": "pan_direita",
+      "transicao_entrada": "dissolve",
+      "transicao_saida": "dissolve",
+      "fala": "Confere cada passo."
+    },
+    {
+      "numero": 9,
+      "inicio_s": 20.0,
+      "fim_s": 22.5,
+      "storyboard": 2,
+      "painel": 3,
+      "texto_tela": "AVISA",
+      "acao": "o ajudante tocando um sino de mão e entregando um bilhete dobrado para a mulher",
+      "camera": "zoom_in",
+      "transicao_entrada": "dissolve",
+      "transicao_saida": "dissolve",
+      "fala": "E te avisa quando acaba."
+    },
+    {
+      "numero": 10,
+      "inicio_s": 22.5,
+      "fim_s": 25.0,
+      "storyboard": 2,
+      "painel": 4,
+      "texto_tela": "TEMPO",
+      "acao": "a mulher deitada numa rede entre dois troncos, sol grande atrás",
+      "camera": "pan_esquerda",
+      "transicao_entrada": "dissolve",
+      "transicao_saida": "dissolve",
+      "fala": "Sobra tempo para você."
+    },
+    {
+      "numero": 11,
+      "inicio_s": 25.0,
+      "fim_s": 27.5,
+      "storyboard": 2,
+      "painel": 5,
+      "texto_tela": "CRIAR",
+      "acao": "a mulher entalhando uma matriz de madeira com goiva, concentrada e sorrindo",
+      "camera": "zoom_out",
+      "transicao_entrada": "dissolve",
+      "transicao_saida": "dissolve",
+      "fala": "Para pensar e criar."
+    },
+    {
+      "numero": 12,
+      "inicio_s": 27.5,
+      "fim_s": 30.0,
+      "storyboard": 2,
+      "painel": 6,
+      "texto_tela": "LIVRE",
+      "acao": "a mulher e o ajudante de costas olhando o horizonte com sol nascendo",
+      "camera": "zoom_in",
+      "transicao_entrada": "dissolve",
+      "transicao_saida": "fade_final",
+      "fala": "Seu dia, enfim, mais livre."
+    }
+  ],
+  "criado_em": "2026-11-13T16:47:33"
+}

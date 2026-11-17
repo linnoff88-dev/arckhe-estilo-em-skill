@@ -1,0 +1,43 @@
+{
+  "video": "exemplos/cordel/referencia/referencia.mp4",
+  "duracao_s": 12.03,
+  "trocas_de_cena": 5,
+  "quadros": [
+    {
+      "arquivo": "exemplos/cordel/estilo/quadros/quadro-01.jpg",
+      "tempo_s": 0.3,
+      "origem": "abertura",
+      "hash": "d49ccde4be9c924a"
+    },
+    {
+      "arquivo": "exemplos/cordel/estilo/quadros/quadro-02.jpg",
+      "tempo_s": 2.25,
+      "origem": "troca",
+      "hash": "da6b0f732c3a326b"
+    },
+    {
+      "arquivo": "exemplos/cordel/estilo/quadros/quadro-03.jpg",
+      "tempo_s": 4.25,
+      "origem": "troca",
+      "hash": "cc04e29b28222a2a"
+    },
+    {
+      "arquivo": "exemplos/cordel/estilo/quadros/quadro-04.jpg",
+      "tempo_s": 6.25,
+      "origem": "troca",
+      "hash": "a8ee277869b36b89"
+    },
+    {
+      "arquivo": "exemplos/cordel/estilo/quadros/quadro-05.jpg",
+      "tempo_s": 8.25,
+      "origem": "troca",
+      "hash": "c4c48dc3e6d2cb76"
+    },
+    {
+      "arquivo": "exemplos/cordel/estilo/quadros/quadro-06.jpg",
+      "tempo_s": 10.25,
+      "origem": "troca",
+      "hash": "7699d95272532e27"
+    }
+  ]
+}

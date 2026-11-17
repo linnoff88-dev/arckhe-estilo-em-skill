@@ -1,0 +1,17 @@
+{
+  "personagem": "uma mulher de uns 40 anos, lenço vermelho terroso amarrado na cabeça, camisa ocre de manga curta, rosto de perfil com nariz marcado; e um ajudante mecânico de madeira entalhada (o agente de IA), corpo de caixote, cabeça quadrada com dois olhos redondos de prego e uma antena curta, braços articulados",
+  "cenas": [
+    {"texto_tela": "REPETIR", "fala": "Cansou de repetir tudo todo dia?", "acao": "a mulher sentada atrás de pilhas altas de papéis iguais, carimbando um por um, cara de cansaço", "camera": "zoom_in"},
+    {"texto_tela": "COPIAR", "fala": "Copiar, colar, conferir, de novo.", "acao": "close das mãos da mulher passando linhas de um caderno para outro caderno idêntico", "camera": "pan_direita"},
+    {"texto_tela": "HORAS", "fala": "São horas que viram nada.", "acao": "um relógio de parede grande com ponteiros entalhados, folhas de papel voando em volta", "camera": "zoom_out"},
+    {"texto_tela": "AGENTE", "fala": "Um agente de IA faz isso.", "acao": "o ajudante mecânico de madeira aparece de frente, acenando, a mulher olha surpresa", "camera": "pan_esquerda"},
+    {"texto_tela": "ENSINA", "fala": "Você explica uma vez só.", "acao": "a mulher apontando um papel, o ajudante ouvindo com a cabeça inclinada", "camera": "zoom_in"},
+    {"texto_tela": "REGRAS", "fala": "Ele anota as suas regras.", "acao": "o ajudante escrevendo com uma pena num rolo de papel comprido", "camera": "pan_cima"},
+    {"texto_tela": "FAZ", "fala": "E repete sem cansar.", "acao": "o ajudante carimbando muito rápido uma pilha de papéis, a mulher ao lado tomando café", "camera": "zoom_out"},
+    {"texto_tela": "CONFERE", "fala": "Confere cada passo.", "acao": "o ajudante olhando um papel com uma lupa grande", "camera": "pan_direita"},
+    {"texto_tela": "AVISA", "fala": "E te avisa quando acaba.", "acao": "o ajudante tocando um sino de mão e entregando um bilhete dobrado para a mulher", "camera": "zoom_in"},
+    {"texto_tela": "TEMPO", "fala": "Sobra tempo para você.", "acao": "a mulher deitada numa rede entre dois troncos, sol grande atrás", "camera": "pan_esquerda"},
+    {"texto_tela": "CRIAR", "fala": "Para pensar e criar.", "acao": "a mulher entalhando uma matriz de madeira com goiva, concentrada e sorrindo", "camera": "zoom_out"},
+    {"texto_tela": "LIVRE", "fala": "Seu dia, enfim, mais livre.", "acao": "a mulher e o ajudante de costas olhando o horizonte com sol nascendo", "camera": "zoom_in"}
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "tema": "Como um agente de IA tira o trabalho repetido do seu dia",
+  "duracao_s": 30.0,
+  "duracao_pedida_s": 30.0,
+  "duracao_real_s": 30.0,
+  "formato": "9:16",
+  "resolucao": "1080x1920",
+  "fps": 30,
+  "motor": "local",
+  "n_cenas": 12,
+  "n_storyboards": 2,
+  "storyboards": [
+    "saida/storyboards/storyboard-1.png",
+    "saida/storyboards/storyboard-2.png"
+  ],
+  "paineis": [
+    "saida/paineis/cena-01.png",
+    "saida/paineis/cena-02.png",
+    "saida/paineis/cena-03.png",
+    "saida/paineis/cena-04.png",
+    "saida/paineis/cena-05.png",
+    "saida/paineis/cena-06.png",
+    "saida/paineis/cena-07.png",
+    "saida/paineis/cena-08.png",
+    "saida/paineis/cena-09.png",
+    "saida/paineis/cena-10.png",
+    "saida/paineis/cena-11.png",
+    "saida/paineis/cena-12.png"
+  ],
+  "clipes": [
+    "saida/clipes/cena-01.mp4",
+    "saida/clipes/cena-02.mp4",
+    "saida/clipes/cena-03.mp4",
+    "saida/clipes/cena-04.mp4",
+    "saida/clipes/cena-05.mp4",
+    "saida/clipes/cena-06.mp4",
+    "saida/clipes/cena-07.mp4",
+    "saida/clipes/cena-08.mp4",
+    "saida/clipes/cena-09.mp4",
+    "saida/clipes/cena-10.mp4",
+    "saida/clipes/cena-11.mp4",
+    "saida/clipes/cena-12.mp4"
+  ],
+  "video_mudo": "saida/video-mudo.mp4",
+  "narracao": "saida/voz/narracao.wav",
+  "trilha": "assets/trilha/energia.mp3",
+  "trilha_volume": 0.5,
+  "trilha_ducking": true,
+  "video": "final/video-final.mp4",
+  "status": "completo",
+  "faltando": [],
+  "gerado_em": "2026-11-13T17:23:00"
+}

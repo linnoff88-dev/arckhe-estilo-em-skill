@@ -1,0 +1,13 @@
+file 'quadros-estilo/estilo-1.jpg'
+duration 2
+file 'quadros-estilo/estilo-2.jpg'
+duration 2
+file 'quadros-estilo/estilo-3.jpg'
+duration 2
+file 'quadros-estilo/estilo-4.jpg'
+duration 2
+file 'quadros-estilo/estilo-5.jpg'
+duration 2
+file 'quadros-estilo/estilo-6.jpg'
+duration 2
+file 'quadros-estilo/estilo-6.jpg'

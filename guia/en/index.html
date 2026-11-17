@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>style-to-skill — Every video you make in the same style, just by changing the topic</title>
+<meta name="description" content="You see a video with a visual style you love, but you can’t reproduce it. The style-to-skill method turns that video’s visual language into a Claude Code or Codex skill: you can make as many videos as you like in the same style, just by changing the topic. Free kit.">
+<link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/estilo-em-skill/guia/">
+<link rel="alternate" hreflang="en" href="https://inematds.github.io/estilo-em-skill/guia/en/">
+<link rel="alternate" hreflang="es" href="https://inematds.github.io/estilo-em-skill/guia/es/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
+    --txt:#e9e9ee; --mut:#9a9aa6; --amb:#E2A23B; --amb2:#f0c070; --sky:#38bdf8; --pro:#cbd5e1;
+    color-scheme:dark;
+  }
+  body.light{
+    --bg:#f6f7f9; --bg2:#eceef2; --card:#ffffff; --line:#e1e3ea;
+    --txt:#1a1a22; --mut:#5b5b68; --amb:#b9791d; --amb2:#a16207; --sky:#0369a1; --pro:#b45309;
+    color-scheme:light;
+  }
+  body.light .hero .glow{opacity:.5}
+  body.light pre{background:#0e0e14;color:#d6d6e0}
+  body.light pre .c{color:#8a8a98}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amb);text-decoration:none}
+  code,pre{font-family:"JetBrains Mono",monospace}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .mut{color:var(--mut)} .amb{color:var(--amb)}
+  .chip{display:inline-block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:600;font-family:Sora}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(12,12,16,.78);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:60px}
+  nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb)}
+  nav .brand .emoji{font-size:1.25rem}
+  nav .sep{color:var(--mut);opacity:.45}
+  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .inema:hover{filter:brightness(1.15)}
+  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .pro:hover{filter:brightness(1.15)}
+  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
+  nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
+  nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
+  .lang{display:inline-flex;gap:2px;font-family:Sora;font-size:.78rem}
+  .lang a{color:var(--mut);padding:.2em .45em;border-radius:6px} .lang a.on{color:var(--amb);background:rgba(226,162,59,.12)}
+  .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .tgl:hover{border-color:var(--amb)}
+  .btn{display:inline-block;background:var(--amb);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  nav .brand,nav .links a.sec{white-space:nowrap}
+  @media(max-width:1300px){nav .links{gap:14px;font-size:.86rem}}
+  @media(max-width:1080px){nav .links a.sec[href="#problema"],nav .links a.sec[href="#como"]{display:none}}
+  @media(max-width:900px){nav .links a.sec{display:none}}
+  @media(max-width:520px){nav .wrap{gap:8px;padding:8px 14px;height:auto;flex-wrap:wrap} nav .links{gap:8px;margin-left:0;width:100%;justify-content:space-between} nav .btn{padding:.45em .7em;font-size:.82rem} .tgl{width:34px;height:34px}}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .glow{position:absolute;inset:-40% -20% auto auto;width:70%;height:600px;background:radial-gradient(closest-side,rgba(226,162,59,.22),transparent 70%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:74px 22px}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-.025em}
+  .hero p.lead{font-size:1.18rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:34ch}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .hero figure img{width:100%;height:auto;display:block}
+  .resumo{padding:38px 0 34px;border-bottom:1px solid var(--line)}
+  .resumo p{font-size:1.12rem;line-height:1.7;max-width:74ch;margin:.55em 0 0}
+  @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;padding:48px 22px}}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  section .sub{color:var(--mut);margin:.6em 0 2em;max-width:62ch}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .card h3{font-size:1.05rem;margin-bottom:.4em}
+  .card p{color:var(--mut);font-size:.92rem;margin:0}
+  .num{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:8px;background:rgba(226,162,59,.14);color:var(--amb);font-family:Sora;font-weight:800;font-size:.9rem;margin-bottom:.7em}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .flow span{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600}
+  .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
+  pre{background:#0a0a0e;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0}
+  pre .c{color:#8b8b99} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  .step{display:grid;grid-template-columns:46px minmax(0,1fr);gap:16px;margin-bottom:26px}
+  .step>div,.card{min-width:0}
+  p code,li code,td code{overflow-wrap:anywhere}
+  .step .b{width:46px;height:46px;border-radius:12px;background:var(--amb);color:#1a1206;font-family:Sora;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .step h3{font-size:1.12rem;margin-bottom:.3em}
+  .step p{color:var(--mut);margin:.2em 0 .7em}
+  .ex{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:680px){.ex{grid-template-columns:1fr}}
+  .ex figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .ex figure img{width:100%;height:auto;display:block}
+  .ex figcaption{padding:12px 14px;font-size:.88rem;color:var(--mut);background:var(--card)}
+  .phase{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .phase:last-child{border:none}
+  .phase .tag{flex:0 0 92px;font-family:Sora;font-weight:800;color:var(--amb)}
+  .phase .d strong{display:block;margin-bottom:.2em}
+  .phase .d span{color:var(--mut);font-size:.92rem}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:0 4px}
+  table.n{width:100%;border-collapse:collapse;font-size:.92rem;margin-top:10px}
+  table.n th,table.n td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  table.n th{color:var(--amb);font-family:Sora}
+  .tabwrap{overflow-x:auto}
+  table.n td:first-child code{overflow-wrap:normal;white-space:nowrap}
+  .glos{margin-top:22px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 22px}
+  .glos h3{font-family:Sora;font-size:1rem;margin:0 0 10px}
+  .glos dl{display:grid;grid-template-columns:minmax(120px,max-content) minmax(0,1fr);gap:8px 16px;margin:0;font-size:.9rem}
+  .glos dt{font-weight:600;color:var(--amb)} .glos dd{margin:0;color:var(--mut)}
+  @media(max-width:540px){.glos dl{grid-template-columns:1fr} .glos dd{margin-bottom:6px}}
+  .nota{margin-top:22px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--amb);border-radius:12px;padding:16px 20px;color:var(--mut)}
+  .nota b{color:var(--txt)}
+  .vid{display:flex;justify-content:center;padding:16px;background:var(--card)}
+  .vid video{width:100%;max-width:320px;height:auto;border-radius:10px;display:block;background:#000}
+  .ok{list-style:none;padding:0;margin:.6em 0 0}
+  .ok li{padding:4px 0 4px 26px;position:relative;color:var(--mut);font-size:.92rem}
+  .ok li::before{content:"✓";position:absolute;left:4px;color:var(--amb);font-weight:800}
+  .techhead{background:var(--bg2);border-top:3px solid var(--amb);padding:58px 0 8px}
+  .techhead h2{font-family:Sora;margin:.3em 0 0}
+  .techzone{background:var(--bg2)}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="brand" href="#top"><span class="emoji">🎞️</span> estilo-em-skill</a>
+  <span class="sep">|</span>
+  <span class="clubpro">
+    <a class="inema" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a>
+    <span class="sep">-</span>
+    <a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a>
+  </span>
+  <div class="links">
+    <a class="sec" href="#video">Video</a>
+    <a class="sec" href="#problema">The problem</a>
+    <a class="sec" href="#como">How it works</a>
+    <a class="sec" href="#demo">The demo</a>
+    <a class="sec" href="#tecnico">Kit (technical)</a>
+    <span class="lang"><a href="../">PT</a><a class="on" href="./">EN</a><a href="../es/">ES</a></span>
+    <button class="tgl" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">🌙</button>
+    <a class="btn" href="https://github.com/inematds/estilo-em-skill" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</div></nav>
+
+<header class="hero" id="top">
+  <div class="glow"></div>
+  <div class="wrap">
+    <div>
+      <span class="chip">style-to-skill · free kit · Claude Code or Codex</span>
+      <h1>Every video you make in the <span class="amb">same style</span>, just by changing the topic</h1>
+      <p class="lead">You see a video with a look you love, but can't recreate it: every video you make comes out looking different, and your channel ends up with no identity. With the <strong>style-to-skill</strong> method, you can make as many videos as you want in the style of a video you admire, just by changing the topic. I'll show you how.</p>
+      <div class="cta">
+        <a class="btn" href="#video">Understand it in 3 minutes</a>
+        <a class="btn ghost" href="https://github.com/inematds/estilo-em-skill" target="_blank" rel="noopener">View on GitHub</a>
+      </div>
+    </div>
+    <figure><img src="../assets/banner-en.jpg" alt="Your style becomes a skill: the style of a video you admire becomes a skill that makes as many videos as you want, just by changing the topic" width="1400" height="788"></figure>
+  </div>
+</header>
+
+<section id="resumo" class="resumo"><div class="wrap">
+  <span class="chip">In short</span>
+  <p>You see a video with a visual style you love, try to repeat it, and every video you make turns out looking different. <strong>style-to-skill</strong> is a free kit that studies the visual language of that video (colors, lettering, composition, movement) and saves everything in a skill, an instruction file that Claude Code or Codex follows. Then you just tell it the topic, and the skill makes the whole video with the same look: storyboard, animated scenes, narration in one voice, a soundtrack, and a review before it says “ready.” It’s for people who make short videos and don’t program; you need Claude Code or Codex, an image generation tool, and three free programs on your computer.</p>
+  <figure style="margin:22px 0 0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000"><img src="../assets/banner-grade-en.jpg" alt="Your style becomes a skill: reference video, frames selected automatically, style bible, 2x3 storyboard, animated scenes, reviewed final video" loading="lazy" width="1400" height="788" style="width:100%;height:auto;display:block"></figure>
+</div></section>
+
+<section id="video"><div class="wrap">
+  <span class="chip">Video</span>
+  <h2>Understand it in <span class="amb">3 minutes</span></h2>
+  <div style="aspect-ratio:16/9;border-radius:14px;overflow:hidden;border:1px solid var(--line)"><iframe referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/bphIJzdykNU" title="Video: every video of yours in the same style, just changing the topic" style="width:100%;height:100%;border:0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+  <p class="mut" style="margin-top:12px"><a href="https://www.youtube.com/watch?v=bphIJzdykNU" target="_blank" rel="noopener">▶ Watch on YouTube</a> · <a href="https://youtube.com/shorts/mSEYJ8zA-zU" target="_blank" rel="noopener">Vertical version (phone)</a></p>
+  <p class="mut">Also see the method's result in the <a href="#demo">demo video ↓</a> and learn <a href="#como">how it works ↓</a>.</p>
+</div></section>
+
+<section id="problema"><div class="wrap">
+  <span class="chip">The problem</span>
+  <h2>Why your style <span class="amb">doesn’t repeat</span></h2>
+  <p class="sub">Every request to AI starts from scratch. It doesn’t remember the colors, lettering, or framing from the previous video. You write “cordel style,” and each time it understands something different. The result: one video looks one way, the next looks another, and your channel has no identity.</p>
+  <div class="grid g3">
+    <div class="card"><h3>What the skill studies: the visual language</h3><p>Colors with each exact code, typeface, where the subject sits in the frame, texture, light, how the camera moves, how one scene transitions to the next, the rhythm, and what would break the style.</p></div>
+    <div class="card"><h3>What it never copies: the content</h3><p>Characters, faces, logos, brands, text, dialogue, and the story from the reference video are left out. The subject and dialogue are always yours.</p></div>
+    <div class="card"><h3>Where the style is stored</h3><p>In a “style bible” inside the skill. Every image request uses the same description, so the tenth video looks like the first.</p></div>
+  </div>
+  <div class="glos"><h3>Words you’ll see here</h3><dl>
+    <dt>Skill</dt><dd>a folder with an instruction file (and scripts) that teaches Claude Code or Codex to do a task from start to finish, the same way every time.</dd>
+    <dt>Style bible</dt><dd>the document that describes the style with rules you can check: color codes, typeface, composition, what not to do, and a sentence included in every image request.</dd>
+    <dt>Storyboard</dt><dd>a single drawing with several scenes side by side (up to 6), like a comic book page. The kit cuts this drawing into separate scenes.</dd>
+    <dt>Engine</dt><dd>what brings the scenes to life. The free local engine moves the camera across the illustration on your computer.</dd>
+    <dt>Soundtrack</dt><dd>the background music. The kit uses one track from beginning to end and lowers the volume when the voice speaks.</dd>
+    <dt>Dissolve</dt><dd>a smooth change from one scene to the next: one image fades out while the next fades in.</dd>
+    <dt>Manifest</dt><dd>a record the skill saves next to the video, listing everything that was used and made; the check reads this record.</dd>
+  </dl></div>
+</div></section>
+
+<section id="como"><div class="wrap">
+  <span class="chip">How it works</span>
+  <h2>From a video you admire to a <span class="amb">checked video</span></h2>
+  <p class="sub">You create the style part once. After that, each new video starts with just the topic.</p>
+  <div class="flow">
+    <span>Reference video</span><span class="arr">→</span>
+    <span>Frames</span><span class="arr">→</span>
+    <span>Style bible</span><span class="arr">→</span>
+    <span>Skill</span><span class="arr">→</span>
+    <span>2×3 storyboard</span><span class="arr">→</span>
+    <span>Animated scenes</span><span class="arr">→</span>
+    <span>One voice</span><span class="arr">→</span>
+    <span>One soundtrack</span><span class="arr">→</span>
+    <span>Checked video</span>
+  </div>
+  <div class="grid g3" style="margin-top:26px">
+    <div class="card"><span class="num">1</span><h3>The kit picks the frames</h3><p>From the reference video, it automatically picks 5 to 8 different images and puts them all on one sheet.</p></div>
+    <div class="card"><span class="num">2</span><h3>AI writes the bible</h3><p>You paste a ready-made prompt into Claude Code or Codex. It looks at the frames and describes the style without copying any of the content.</p></div>
+    <div class="card"><span class="num">3</span><h3>The style becomes a skill</h3><p>One command installs the skill with the bible inside, in Claude Code or Codex. You do this once for each style.</p></div>
+    <div class="card"><span class="num">4</span><h3>You choose the topic</h3><p>And four more details, with ready-made defaults: format (vertical, landscape, or square), duration, resolution, and engine.</p></div>
+    <div class="card"><span class="num">5</span><h3>Storyboard in the style</h3><p>The skill writes the script (one large word and one short sentence per scene) and asks for the storyboard. The second storyboard uses the first as a reference to keep the same characters.</p></div>
+    <div class="card"><span class="num">6</span><h3>It animates, narrates, and checks</h3><p>Each scene gets movement, the narration uses a single voice, one soundtrack plays from start to finish, and a script checks the video. Only then does it say "ready".</p></div>
+  </div>
+  <h3 style="margin:34px 0 6px">How much video fits in each storyboard</h3>
+  <p class="mut" style="margin:0 0 6px;max-width:70ch">Each scene lasts 2.5 seconds, and each storyboard has up to 6 scenes (15 seconds). Longer videos use several storyboards, made one at a time. Durations that don't divide evenly into 2.5 are rounded to the nearest one, with a notice (17 s becomes 17.5 s).</p>
+  <div class="tabwrap"><table class="n">
+    <tr><th>Duration</th><th>Scenes</th><th>Storyboards</th><th>Layout in vertical format (rows × columns)</th></tr>
+    <tr><td>10 s</td><td>4</td><td>1</td><td>2 × 2</td></tr>
+    <tr><td>15 s</td><td>6</td><td>1</td><td>2 × 3</td></tr>
+    <tr><td>20 s</td><td>8</td><td>2</td><td>2 × 2 + 2 × 2</td></tr>
+    <tr><td>30 s</td><td>12</td><td>2</td><td>2 × 3 + 2 × 3</td></tr>
+    <tr><td>45 s</td><td>18</td><td>3</td><td>2 × 3, three times</td></tr>
+  </table></div>
+  <p class="mut" style="margin-top:14px">In landscape format (16:9), the full layout is 3 rows × 2 columns. <a href="#guia">How to use ↓</a></p>
+</div></section>
+
+<section id="demo"><div class="wrap">
+  <span class="chip">A demo</span>
+  <h2>Cordel, from <span class="amb">start to finish</span></h2>
+  <p class="sub">To avoid using anyone else’s video, the demo uses its own reference style: six cordel woodcut panels (cream paper, solid black, ochre, earthy red, carved letters, and a yellow string connecting the scenes), made for this kit and joined into a 12-second video. The whole workflow ran with a topic that has nothing to do with cordel: “How an AI agent takes repetitive work out of your day,” 30 seconds, vertical.</p>
+  <div class="ex" style="align-items:start">
+    <figure><img src="../assets/quadros-estilo.jpg" alt="Sheet with six cordel woodcut panels: sea, fair, house, loom, song, and road" loading="lazy" width="900" height="938"><figcaption><b>The reference style.</b> The 6 panels the kit chose on its own. Sea, fair, house, loom, song, and road are just the reference: the new video doesn’t repeat any of these scenes, only the drawing style.</figcaption></figure>
+    <figure><img src="../assets/storyboard-1.jpg" alt="Six-panel storyboard in cordel style: Repeat, Copy, Hours, Agent, Teach, Rules" loading="lazy" width="900" height="900"><figcaption><b>Storyboard 1, new topic.</b> Six scenes in one drawing, in the same woodcut: a woman with a red headscarf, tired of repetitive work, and a wooden helper (the agent). The yellow string goes from one scene to the next.</figcaption></figure>
+    <figure><img src="../assets/storyboard-2.jpg" alt="Storyboard 2 in six panels in cordel style: Do, Check, Notify, Time, Create, Free" loading="lazy" width="900" height="900"><figcaption><b>Storyboard 2.</b> It received the first one as a reference to keep the same woman and the same helper in the other six scenes.</figcaption></figure>
+    <figure><div class="vid"><video controls preload="none" playsinline poster="../assets/video-poster.jpg" width="540" height="960"><source src="../../exemplos/cordel/final/video-final.mp4" type="video/mp4"></video></div><figcaption><b>The finished video</b> (30 s, vertical, with sound; the drawn words and the narration are in Portuguese). Everything checked out:
+      <ul class="ok"><li>30.0 seconds long, as requested</li><li>1080 × 1920, the vertical video size</li><li>sound in the video and voice in the narration (nothing is muted)</li><li>12 spoken phrases, checked separately against a local transcript: they match the script</li><li>one soundtrack, lowered under the voice</li></ul></figcaption></figure>
+  </div>
+  <figure style="margin:22px 0 0;border-radius:14px;overflow:hidden;border:1px solid var(--line)"><img src="../assets/folha-final.jpg" alt="Final sheet with one panel from each of the video's 12 scenes: Repeat, Copy, Hours, Agent, Teach, Rules, Do, Check, Notify, Time, Create, Free" loading="lazy" width="1200" height="742" style="width:100%;height:auto;display:block"><figcaption style="padding:12px 14px;font-size:.88rem;color:var(--mut);background:var(--card)"><b>The final sheet:</b> one panel from each scene, taken from the finished video. It’s what you check before saying “done”: the right word, complete lettering, the same style throughout. Animating the 12 scenes took 78 seconds on this machine, with no video AI.</figcaption></figure>
+</div></section>
+
+<section id="mudou"><div class="wrap">
+  <span class="chip">What changed</span>
+  <h2>The skill improves <span class="amb">after every test</span></h2>
+  <p class="sub">The skill doesn't come ready-made. After each video, you look at the final sheet, note what went wrong, and change the rule, not just the prompt. There were six changes in the demo.</p>
+  <div class="ex">
+    <figure><img src="../assets/storyboard-1-tentativa-1.jpg" alt="First attempt at storyboard 1: words from edge to edge and too little black space" loading="lazy" width="900" height="900"><figcaption><b>Attempt 1 (rejected):</b> words from edge to edge and too little black. At zoom, the first and last letters disappeared, and the print looked like a colorful drawing.</figcaption></figure>
+    <figure><img src="../assets/storyboard-1.jpg" alt="Accepted attempt at storyboard 1: more black and the yellow cord connecting the scenes" loading="lazy" width="900" height="900"><figcaption><b>Attempt 2 (accepted):</b> more black mass and the cord running from one scene to the next. The words stayed large, so the fix was made in the crop (item 2).</figcaption></figure>
+  </div>
+  <div class="phase" style="margin-top:18px"><div class="tag">1 · letters</div><div class="d"><strong>Words that were too large lost letters when zoomed in</strong><span>The bible now asks for words no wider than 60% of the scene and at least one third black in each scene.</span></div></div>
+  <div class="phase"><div class="tag">2 · crop</div><div class="d"><strong>Asking again didn't help</strong><span>The image tool ignored the 60% again. The safeguard moved from the prompt to the crop, which now leaves a paper margin around each scene. The whole word fits, even at maximum zoom.</span></div></div>
+  <div class="phase"><div class="tag">3 · cord</div><div class="d"><strong>The cord crossing through confused the crop</strong><span>The crop looks for the space between scenes and got lost when the yellow cord passed over it. Now it can handle a detail crossing through.</span></div></div>
+  <div class="phase"><div class="tag">4 · voice</div><div class="d"><strong>The computer voice made up an extra bit</strong><span>A four-word sentence came out almost 5 seconds long and pushed the next ones past the end. Now any speech that runs too long for its number of words is generated again (up to 3 times), and the shortest version is kept.</span></div></div>
+  <div class="phase"><div class="tag">5 · cuts</div><div class="d"><strong>An aggressive cut swallowed "again"</strong><span>To remove the murmur after the sentence, the first cut removed a real word (the transcript caught it). The cut became gentler and is checked on both sides: it removes the murmur and keeps the last word.</span></div></div>
+  <div class="phase"><div class="tag">6 · scene 3</div><div class="d"><strong>A loud sound with no word</strong><span>You could catch it only by listening or transcribing. Now you can redo just the problem scene. Result: 12 out of 12 sentences correct.</span></div></div>
+  <div class="nota"><b>The rule to keep:</b> if the same error comes back, change the rule (in the bible, the storyboard rules, or the script), not just the prompt. <a href="#guia">How to use ↓</a></div>
+</div></section>
+
+<section id="limites"><div class="wrap">
+  <span class="chip">Honest limitations</span>
+  <h2>What the kit <span class="amb">doesn't do</span> (yet)</h2>
+  <p class="sub">It's best to know before choosing a style.</p>
+  <div class="grid g4">
+    <div class="card"><h3>Fine details get blurry</h3><p>Each storyboard comes out at about 1254 × 1254 pixels; each scene is around 370 × 600 and is enlarged to 1080 × 1920. Flat styles (engraving, cutout, flat) hold up well.</p></div>
+    <div class="card"><h3>Text in images can be wrong</h3><p>The image tool may change letters. Check each word enlarged. Short words without accents are less likely to be wrong.</p></div>
+    <div class="card"><h3>The drawing doesn't move</h3><p>The local engine moves the camera across the illustration and connects the scenes with a dissolve. A walking character needs an AI video engine, which hasn't been tested in this kit.</p></div>
+    <div class="card"><h3>Continuity isn't guaranteed</h3><p>The previous storyboard is used as a reference, but the same person may change a detail. Check before continuing.</p></div>
+    <div class="card"><h3>Computer voices make up sounds</h3><p>The kit cuts out sounds that are much quieter than the speech. A loud sound without words can only be caught by listening or transcribing.</p></div>
+    <div class="card"><h3>The AI writes the style bible</h3><p>It looks at the frames and may get a color wrong. Check the colors and the list of things to avoid before using it.</p></div>
+    <div class="card"><h3>Only use what you have rights to</h3><p>References and music must be yours or licensed. The method copies the visual language, never characters, logos, or text.</p></div>
+    <div class="card"><h3>Not tested on Mac</h3><p>The kit was built and tested on Linux (Ubuntu). On Mac, install the skill using the guide's manual method.</p></div>
+  </div>
+</div></section>
+
+<div id="tecnico" class="techhead"><div class="wrap">
+  <span class="chip">Technical section</span>
+  <h2>The toolkit: <span class="amb">for anyone who wants to build their own skill</span></h2>
+  <p class="sub">From here on, it gets technical: install, extract the frames, create the skill, and request the video. You <strong>don't need</strong> this section to understand what came before.</p>
+</div></div>
+
+<div class="techzone">
+
+<section id="oque"><div class="wrap">
+  <span class="chip">What it is</span>
+  <h2>What comes in the <span class="amb">kit</span></h2>
+  <p class="sub">An open kit (MIT) that turns a video’s style into a skill. It doesn’t call any API: everything runs on your computer, and the storyboard image comes from the tool you already use.</p>
+  <div class="tabwrap"><table class="n">
+    <tr><th>Folder or file</th><th>What it does</th></tr>
+    <tr><td><code>scripts/quadros.py</code></td><td>takes 5 to 8 different frames from the reference video (scene changes + removes similar ones) and creates the <code>folha.jpg</code></td></tr>
+    <tr><td><code>prompts/criar-skill.md</code></td><td>the prompt you paste into Claude Code or Codex to write the style bible</td></tr>
+    <tr><td><code>scripts/instalar.sh</code></td><td>installs the skill in Claude Code (<code>.claude/skills/</code>) or Codex (<code>.agents/skills/</code>)</td></tr>
+    <tr><td><code>molde/estilo-em-skill/</code></td><td>the skill template: <code>SKILL.md</code>, <code>references/</code> (bible, storyboard and video rules, lessons), <code>modelos/</code> (storyboard and video requests) and <code>scripts/</code> (<code>cenas.py</code>, <code>pedido_storyboard.py</code>, <code>recortar.py</code>, <code>animar.py</code>, <code>narrar.py</code>, <code>montar.py</code>, <code>validar.py</code>, <code>folha.py</code>)</td></tr>
+    <tr><td><code>tests/rodar.sh</code></td><td>the kit’s tests, without pytest</td></tr>
+    <tr><td><code>exemplos/cordel/</code></td><td>the complete demo: reference, frames, style bible, installed skill, storyboards, script, panels, final video, manifest and <code>LICOES.md</code></td></tr>
+  </table></div>
+</div></section>
+
+<section id="pre"><div class="wrap">
+  <span class="chip">Prerequisites</span>
+  <h2>What you <span class="amb">need</span></h2>
+  <p class="sub">You don’t write code: you copy commands and talk to the AI.</p>
+  <div class="grid g3">
+    <div class="card"><h3>Claude Code or Codex</h3><p>To review the frames, write the style bible, and run the skill. Open it in the terminal, in the kit folder, with <code>claude</code> or <code>codex</code>.</p></div>
+    <div class="card"><h3>An image generation tool</h3><p>For the storyboard. In Codex, use <code>image_gen</code> with your subscription. In Claude Code, use whichever tool you have; or generate the images yourself and save them where the skill asks.</p></div>
+    <div class="card"><h3>ffmpeg, Python 3, and Pillow</h3><p>ffmpeg cuts, animates, and joins (it includes ffprobe). Python 3 runs the scripts. Pillow works with images. All three are free.</p></div>
+    <div class="card"><h3>A voice</h3><p>Record the narration, or use a computer voice that runs on your machine.</p></div>
+    <div class="card"><h3>Music</h3><p>Yours or properly licensed, in <code>.mp3</code> or <code>.wav</code> format. Without a soundtrack, the skill stops and asks.</p></div>
+    <div class="card"><h3>git</h3><p>To download the kit from GitHub.</p></div>
+  </div>
+  <div class="grid g2" style="margin-top:22px">
+    <div class="card"><h3>Ubuntu / Debian</h3>
+<pre><span class="k">sudo apt update</span>
+<span class="k">sudo apt install -y ffmpeg python3 python3-pil git</span></pre></div>
+    <div class="card"><h3>Mac (with Homebrew)</h3>
+<pre><span class="k">brew install ffmpeg python pillow git</span></pre>
+    <p>Not tested on Mac. If the skill’s automatic installation fails, use the manual method in step 4.</p></div>
+  </div>
+  <p class="mut" style="margin:22px 0 8px">Check (on both systems) and download the kit:</p>
+<pre><span class="k">ffmpeg -version</span>
+<span class="k">python3 --version</span>
+<span class="k">python3 -c "import PIL; print('Pillow ok')"</span>
+<span class="k">git clone https://github.com/inematds/estilo-em-skill</span>
+<span class="k">cd estilo-em-skill</span></pre>
+</div></section>
+
+<section id="guia"><div class="wrap">
+  <span class="chip">Usage guide · step by step</span>
+  <h2>From a reference video to <span class="amb">your skill</span></h2>
+  <p class="sub">You do steps 1 to 4 once for each style. From step 5 on, it's for each new video.</p>
+
+  <div class="step"><div class="b">1</div><div>
+    <h3>Run the kit tests</h3>
+    <p>Confirm that ffmpeg, Python, and Pillow are in place. It takes a few minutes and ends with <code>24/24 testes passaram</code>. The script uses the <code>timeout</code> command, which Mac doesn't include.</p>
+<pre><span class="k">bash tests/rodar.sh</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">2</div><div>
+    <h3>Extract frames from the reference video</h3>
+    <p>Choose the video whose style you want (one you can use) and save it in the kit folder as <code>ref.mp4</code> (or replace <code>ref.mp4</code> in the command with your file name). The script picks 5 to 8 different frames and creates a contact sheet. Open <code>folha.jpg</code> and check that the frames show the style.</p>
+<pre><span class="k">python3 scripts/quadros.py ref.mp4 --n 8 --saida estilo/quadros/</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">3</div><div>
+    <h3>Ask AI to write the style bible</h3>
+    <p>Copy the bible template, open Claude Code (<code>claude</code>) or Codex (<code>codex</code>) in the kit folder, and paste the text from <code>prompts/criar-skill.md</code> (the part after the line of three dashes). AI looks at the frames, fills in the bible, and makes a test image with a new subject. Check the colors and the "what not to do" section. At the end, no <code>PREENCHER</code> should be left.</p>
+<pre><span class="k">mkdir -p estilo</span>
+<span class="k">cp molde/estilo-em-skill/references/estilo.md estilo/estilo.md</span>
+<span class="c"># after AI fills it in, this number must be 0:</span>
+<span class="k">grep -c PREENCHER estilo/estilo.md</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">4</div><div>
+    <h3>Install the skill</h3>
+    <p>Give the style a short name (e.g.: <code>meu-estilo</code>). Claude Code reads skills from the <code>.claude/skills/</code> folder of the project you open; Codex reads <code>.agents/skills/</code>. Without <code>--projeto</code>, the skill goes in the current folder (the kit folder).</p>
+<pre><span class="c"># Claude Code</span>
+<span class="k">bash scripts/instalar.sh meu-estilo claude --estilo estilo/estilo.md</span>
+<span class="c"># Codex</span>
+<span class="k">bash scripts/instalar.sh meu-estilo codex --estilo estilo/estilo.md</span>
+<span class="c"># install in another project folder</span>
+<span class="k">bash scripts/instalar.sh meu-estilo claude --estilo estilo/estilo.md --projeto ~/meus-videos</span>
+<span class="c"># Claude Code, for all projects</span>
+<span class="k">bash scripts/instalar.sh meu-estilo claude --estilo estilo/estilo.md --destino ~/.claude/skills/meu-estilo</span></pre>
+    <p><b>Manual method</b> (Mac, or if the script fails): copy the template, add your bible, and change the name in the <code>SKILL.md</code> heading. For Codex, replace <code>.claude/skills</code> with <code>.agents/skills</code>.</p>
+<pre><span class="k">mkdir -p .claude/skills/meu-estilo</span>
+<span class="k">cp -R molde/estilo-em-skill/. .claude/skills/meu-estilo/</span>
+<span class="k">cp estilo/estilo.md .claude/skills/meu-estilo/references/estilo.md</span>
+<span class="k">perl -pi -e 's/\{\{NOME_DO_ESTILO\}\}/meu-estilo/g' .claude/skills/meu-estilo/SKILL.md</span></pre>
+    <p>After installing, open a new Claude Code or Codex session in that folder so it can see the skill.</p>
+  </div></div>
+
+  <div class="step"><div class="b">5</div><div>
+    <h3>Ask for the video</h3>
+    <p>In the folder where the skill is installed, open Claude Code or Codex and write your request. The skill asks about any missing details (subject, format, duration, resolution, engine), suggesting the defaults (vertical, 15 s, 1080 × 1920, local engine). Put a music file in <code>assets/trilha/</code>, inside the folder where you opened Claude Code or Codex, or say which one to use.</p>
+<pre><span class="s">use a skill meu-estilo para um vídeo sobre como organizar a semana, 9:16, 15 segundos, motor local</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">6</div><div>
+    <h3>What the skill runs (and you can run by hand)</h3>
+    <p>It writes <code>roteiro.json</code> (one large word and a line of up to 6 words per scene), generates the storyboards in the image tool, checks each one, and runs the scripts. These are the commands, in order, from the project folder (tested with the demo files; the duration must match the number of scenes in the script):</p>
+<pre><span class="k">S=.claude/skills/meu-estilo/scripts</span>
+<span class="k">python3 $S/cenas.py --tema "Seu tema" --duracao 30 --formato 9:16 --resolucao 1080x1920 --motor local --roteiro roteiro.json</span>
+<span class="k">python3 $S/pedido_storyboard.py</span>
+<span class="c"># generate saida/storyboards/storyboard-1.png (and -2.png...) using each one's prompt</span>
+<span class="k">python3 $S/recortar.py --plano saida/plano.json</span>
+<span class="k">python3 $S/animar.py</span>
+<span class="k">python3 $S/narrar.py --arquivo voz.wav</span>
+<span class="k">python3 $S/montar.py --trilha minha-musica.mp3</span>
+<span class="k">python3 $S/validar.py --duracao 30 --resolucao 1080x1920</span>
+<span class="k">python3 $S/folha.py</span></pre>
+    <p>Script format, if you want to write your own:</p>
+<pre><span class="s">{"personagem": "quem aparece em várias cenas, descrito sempre igual",
+ "cenas": [{"texto_tela": "PALAVRA", "fala": "frase curta falada", "acao": "o que se vê", "camera": "zoom_in"}]}</span></pre>
+    <p>Other ways to narrate: <code>--falas-dir falas/</code> (one recording per scene), <code>--comando '&lt;tts&gt; {texto} {saida}'</code> (any voice that runs on your machine), and <code>--refazer 3</code> (redo only scene 3). <code>--edge</code> uses an online service and hasn't been tested.</p>
+  </div></div>
+
+  <div class="step"><div class="b">7</div><div>
+    <h3>Check and improve the skill</h3>
+    <p>It's only "ready" when <code>validar.py</code> prints <code>PASSOU</code> and you check <code>final/folha-final.jpg</code>. Add what went wrong to the skill's <code>references/licoes.md</code>; if the error happens again, change the rule in the bible, in <code>references/regras-storyboard.md</code>, or in the script.</p>
+<pre><span class="c"># the demo output</span>
+  ok   manifesto com status completo
+  ok   30 arquivos do manifesto existem
+  ok   duração 30.00 s (pedido 30 s ± 0,5)
+  ok   resolução 1080x1920
+  ok   áudio do vídeo com som (média -20.2 dB, pico -3.9 dB)
+  ok   narração com voz (média -18.9 dB)
+PASSOU: vídeo conferido, pode dizer pronto.</pre>
+  </div></div>
+
+  <div class="step"><div class="b">8</div><div>
+    <h3>Check the demo on your computer</h3>
+    <p>The repository stores the final video, the manifest, and the demo voice, but not the intermediate files (PNG panels, clips, silent video). So in a clone, checking uses <code>--sem-intermediarios</code> and looks at 5 files instead of 30.</p>
+<pre><span class="k">cd exemplos/cordel</span>
+<span class="k">python3 skill/scripts/validar.py --sem-intermediarios --duracao 30 --resolucao 1080x1920</span></pre>
+  </div></div>
+</div></section>
+
+<section id="motores"><div class="wrap">
+  <span class="chip">Engines</span>
+  <h2>What brings <span class="amb">movement</span> to the scenes</h2>
+  <p class="sub">The kit doesn't call any API. For AI video engines, it only writes the prompts; you run them in your own account.</p>
+  <div class="tabwrap"><table class="n">
+    <tr><th>Engine</th><th>Status</th><th>What it does</th></tr>
+    <tr><td><code>local</code></td><td><b>tested</b></td><td>free, with no AI video: each scene gets a slow camera movement (slow zoom, 1.18× by default and at most 1.25×, or pan), and the scenes are joined with a dissolve, for the exact duration</td></tr>
+    <tr><td><code>kling</code></td><td>not tested in this kit</td><td><code>animar.py --motor kling --so-prompts</code> saves the <code>kling image_to_video</code> commands for each scene to <code>saida/prompts-kling.sh</code>; nothing is sent</td></tr>
+    <tr><td><code>seedance</code> / higgsfield</td><td>not tested in this kit</td><td><code>animar.py --motor seedance --so-prompts</code> saves one prompt per storyboard to <code>saida/prompts-seedance.md</code> (scene timing, camera, text, transition, speech, no music) for you to paste into the site</td></tr>
+  </table></div>
+  <p class="mut" style="margin-top:14px">With kling or seedance, the clips you generate go back to <code>saida/clipes/</code> and the skill continues from the narration onward.</p>
+</div></section>
+
+<section id="testes"><div class="wrap">
+  <span class="chip">Tests</span>
+  <h2>What the kit <span class="amb">guarantees</span></h2>
+  <p class="sub"><code>bash tests/rodar.sh</code> runs 24 tests with synthetic images and tones in place of voice and music (24/24 passing on 13/11/2026, on Ubuntu).</p>
+  <div class="grid g3">
+    <div class="card"><h3>Different frames</h3><p><code>quadros.py</code> uses ffmpeg’s scene change detection and discards similar frames (drawing and color); videos with few changes fall back to evenly spaced frames.</p></div>
+    <div class="card"><h3>Crop that finds the gutter</h3><p><code>recortar.py</code> finds the space between the panels (light or dark, even with the cord crossing it); if it can’t find it, it cuts on a fixed grid. It adds padding so the zoom doesn’t cut off a word.</p></div>
+    <div class="card"><h3>Exact duration</h3><p><code>animar.py</code> doesn’t shorten the video with the dissolve: 30 seconds requested, 30 seconds delivered.</p></div>
+    <div class="card"><h3>Voice that fits</h3><p><code>narrar.py</code> cuts silence from the ends, speeds up by up to 15% if needed, warns when the speech doesn’t fit, and rejects silent voice.</p></div>
+    <div class="card"><h3>One soundtrack</h3><p><code>montar.py</code> uses the same music from beginning to end (volume 0.5, lowered under the voice, fade at the end). Without a soundtrack, it stops and asks.</p></div>
+    <div class="card"><h3>Real verification</h3><p><code>validar.py</code> checks the manifest files, duration ±0.5 s, resolution, audio and narration that aren’t silent, soundtrack, and <code>status: completo</code>. If it fails, it exits with an error and says what’s missing.</p></div>
+  </div>
+</div></section>
+
+<section id="roadmap"><div class="wrap">
+  <span class="chip">Roadmap</span>
+  <h2>Next <span class="amb">steps</span></h2>
+  <div class="phase"><div class="tag">Today</div><div class="d"><strong>Local engine tested, full cordel demo</strong><span>Skill template, installation in Claude Code and Codex, 24 tests, a 30-second video reviewed, and lessons from the demo.</span></div></div>
+  <div class="phase"><div class="tag">Next</div><div class="d"><strong>Test AI video engines</strong><span>kling and seedance/higgsfield already generate the requests; they still need to be run on an account and the results checked.</span></div></div>
+  <div class="phase"><div class="tag">Later</div><div class="d"><strong>Mac</strong><span>Test the installation and tests on Mac (today <code>instalar.sh</code> uses Linux <code>sed</code>).</span></div></div>
+</div></section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="pill">Python 3</div><div class="pill">ffmpeg</div><div class="pill">Pillow</div><div class="pill">no API</div><div class="pill">MIT</div>
+    <p style="margin-top:18px">style-to-skill · every video you make in the same style ·
+      <a href="https://github.com/inematds/estilo-em-skill">inematds/estilo-em-skill</a> ·
+      <a href="https://inema.club">INEMA.CLUB</a></p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var KEY='estilo-em-skill-theme';
+    var b=document.body, t=document.getElementById('themeToggle');
+    try{ if(localStorage.getItem(KEY)==='light'){ b.classList.add('light'); t.textContent='☀️'; } }catch(e){}
+    t.addEventListener('click',function(){
+      var light=b.classList.toggle('light');
+      t.textContent=light?'☀️':'🌙';
+      try{ localStorage.setItem(KEY, light?'light':'dark'); }catch(e){}
+    });
+  })();
+</script>
+</body>
+</html>

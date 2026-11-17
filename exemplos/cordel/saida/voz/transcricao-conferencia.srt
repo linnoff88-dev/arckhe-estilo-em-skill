@@ -1,0 +1,47 @@
+1
+00:00:00,000 --> 00:00:02,120
+Cansou de repetir tudo, todo dia?
+
+2
+00:00:02,640 --> 00:00:04,700
+Copiar, colar, conferir, de novo.
+
+3
+00:00:05,139 --> 00:00:06,280
+São horas que viram nada.
+
+4
+00:00:07,639 --> 00:00:09,220
+Um agente de IA faz isso.
+
+5
+00:00:10,160 --> 00:00:11,240
+Você explica uma vez só.
+
+6
+00:00:12,660 --> 00:00:14,060
+Ele anota as suas regras.
+
+7
+00:00:14,980 --> 00:00:16,239
+E repete sem cansar.
+
+8
+00:00:17,679 --> 00:00:18,800
+Confere cada passo.
+
+9
+00:00:19,960 --> 00:00:21,359
+E te avisa quando acaba.
+
+10
+00:00:22,719 --> 00:00:23,859
+Sobra tempo para você.
+
+11
+00:00:23,859 --> 00:00:26,559
+Para pensar e criar.
+
+12
+00:00:27,620 --> 00:00:29,539
+Seu dia, enfim, mais livre.
