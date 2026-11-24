@@ -1,6 +1,6 @@
 # estilo en skill: todos tus videos con el mismo estilo, cambiando solo el tema
 
-[![estilo en skill: convierte tu estilo en una skill](guia/assets/banner-es.jpg)](https://inematds.github.io/estilo-em-skill/guia/es/)
+[![estilo en skill: convierte tu estilo en una skill](guia/assets/banner-es.jpg)](https://linnoff88-dev.github.io/
 
 **🇧🇷 [Português](README.md) · 🇺🇸 [English](README.en.md) · 🇪🇸 [Español](README.es.md)**
 
@@ -10,7 +10,7 @@ Ves un video con un estilo visual que te encanta, intentas repetirlo y cada vide
 
 ## 📖 Guía de uso
 
-Guía completa (página de presentación + paso a paso): **https://inematds.github.io/estilo-em-skill/guia/es/**
+Guía completa (página de presentación + paso a paso): **https://linnoff88-dev.github.io/
 
 🎬 Video: https://www.youtube.com/watch?v=bphIJzdykNU · Short: https://youtube.com/shorts/mSEYJ8zA-zU
 
@@ -61,7 +61,7 @@ Leyenda: 🧠 tú con la IA · ⚙️ script · 🤖 la skill (la IA sigue el `S
 | 9 | Genera los storyboards, uno a la vez (el segundo usa el primero como referencia), y REVISA cada uno | herramienta de imágenes → `saida/storyboards/storyboard-N.png` | 🤖🧠 |
 | 10 | Recorta en paneles con el formato del video | `recortar.py --plano saida/plano.json` | ⚙️ |
 | 11 | Anima (motor local: zoom/paneo lento + disolvencia) | `animar.py` | ⚙️ |
-| 12 | Añade la narración con una sola voz, ajustada a las escenas | `narrar.py --arquivo voz.wav` (o `--falas-dir`, `--comando`, `--inemavox`) | ⚙️ |
+| 12 | Añade la narración con una sola voz, ajustada a las escenas | `narrar.py --arquivo voz.wav` (o `--falas-dir`, `--comando`, `--ARCKHÉvox`) | ⚙️ |
 | 13 | Añade una sola pista musical con ducking + video final + manifiesto | `montar.py` | ⚙️ |
 | 14 | Comprueba el resultado y revisa la hoja final | `validar.py --duracao 30 --resolucao 1080x1920` y `folha.py` | ⚙️🧠 |
 | 15 | Mejora la skill con lo que salió mal | anota en `references/licoes.md` y cambia la regla | 🧠 |
@@ -164,8 +164,8 @@ funcionó fue cambiar el script (`--respiro`). Consulta `exemplos/cordel/LICOES.
 - **El texto dibujado** depende de la herramienta de imágenes: revisa cada palabra con zoom. Las palabras cortas y sin
   tilde tienen menos errores.
 - **El motor local no anima el dibujo**: la cámara recorre la ilustración + disolvencia. Para que los personajes se muevan de verdad, usa un motor de IA de video (no probado aquí).
-- **edge-tts** usa un servicio en línea y no se probó en este kit; la demo usó TTS local. El modo `--inemavox`
-  llama a `tts_direct.py` de una instalación local de inemavox; la API HTTP (puerto 8010) no está implementada.
+- **edge-tts** usa un servicio en línea y no se probó en este kit; la demo usó TTS local. El modo `--ARCKHÉvox`
+  llama a `tts_direct.py` de una instalación local de ARCKHÉvox; la API HTTP (puerto 8010) no está implementada.
 - **La voz local inventa sonidos**: el recorte de la cola es conservador (solo elimina lo que suena mucho más bajo o dura muy poco).
   Un sonido fuerte sin palabras después de la frase solo se detecta escuchando o transcribiendo; en ese caso, usa `--refazer N`.
 - Se pide **continuidad** entre storyboards (el anterior se usa como referencia), pero no está garantizada: revísala.
@@ -185,4 +185,4 @@ exemplos/cordel/                             ← la demo completa
 
 ## Licencia
 
-MIT © 2026 INEMA
+MIT © 2026 ARCKHÉ

@@ -9,7 +9,7 @@ Público: criador de vídeo 30+, não programador. Tudo em português do Brasil.
 - Demo: `exemplos/cordel/` (estilo próprio, quadros gerados para o kit; nunca usar quadro de vídeo de terceiro).
 - Motores kling e seedance/higgsfield: só geram prompts, **não testados**. Nenhuma API é chamada pelo kit.
 - Sem caminhos da máquina dentro do molde (nada de `/home/...`); manifesto e plano com caminhos relativos.
-- Commits: autor `inematds <inematds@gmail.com>`.
+- Commits: autor `linnoff88-dev <linnoff88-dev@gmail.com>`.
 
 ## Self-learning
 

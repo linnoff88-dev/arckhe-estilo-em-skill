@@ -1,6 +1,6 @@
 # style-to-skill: every video in your style, just change the topic
 
-[![style-to-skill: turn your style into a skill](guia/assets/banner-en.jpg)](https://inematds.github.io/estilo-em-skill/guia/en/)
+[![style-to-skill: turn your style into a skill](guia/assets/banner-en.jpg)](https://linnoff88-dev.github.io/
 
 **🇧🇷 [Português](README.md) · 🇺🇸 [English](README.en.md) · 🇪🇸 [Español](README.es.md)**
 
@@ -10,7 +10,7 @@ You see a video with a visual style you love, try to repeat it, and every video 
 
 ## 📖 User guide
 
-Complete guide (landing page + step-by-step instructions): **https://inematds.github.io/estilo-em-skill/guia/en/**
+Complete guide (landing page + step-by-step instructions): **https://linnoff88-dev.github.io/
 
 🎬 Video: https://www.youtube.com/watch?v=bphIJzdykNU · Short: https://youtube.com/shorts/mSEYJ8zA-zU
 
@@ -57,7 +57,7 @@ Key: 🧠 you with the AI · ⚙️ script · 🤖 the skill (the AI following `
 | 9 | Generate the storyboards, one at a time (the second uses the first as a reference), and LOOK at each one | image tool → `saida/storyboards/storyboard-N.png` | 🤖🧠 |
 | 10 | Crop into panels in the video format | `recortar.py --plano saida/plano.json` | ⚙️ |
 | 11 | Animate (local engine: slow zoom/pan + dissolve) | `animar.py` | ⚙️ |
-| 12 | Narrate in one voice, timed to the scenes | `narrar.py --arquivo voz.wav` (or `--falas-dir`, `--comando`, `--inemavox`) | ⚙️ |
+| 12 | Narrate in one voice, timed to the scenes | `narrar.py --arquivo voz.wav` (or `--falas-dir`, `--comando`, `--ARCKHÉvox`) | ⚙️ |
 | 13 | Add one soundtrack with ducking + final video + manifest | `montar.py` | ⚙️ |
 | 14 | Check the result and look at the final contact sheet | `validar.py --duracao 30 --resolucao 1080x1920` and `folha.py` | ⚙️🧠 |
 | 15 | Improve the skill based on what went wrong | note it in `references/licoes.md` and change the rule | 🧠 |
@@ -150,7 +150,7 @@ The skill isn’t ready from the start. After each video, look at the final cont
 - **Storyboard resolution**: the image tool delivers about 1254×1254 per storyboard; each panel comes out around 370×600 px and is enlarged to 1080×1920. Flat styles (engraving, cutout, flat) hold up well; styles with lots of fine detail look soft.
 - **Drawn text** depends on the image tool: zoom in and check each word. Short words without accents are less likely to be wrong.
 - **The local engine doesn’t animate the drawing**: it moves the camera around the illustration + dissolve. To make characters actually move, use an AI video engine (not tested here).
-- **edge-tts** uses an online service and hasn’t been tested in this toolkit; the demo used local TTS. The `--inemavox` mode calls `tts_direct.py` from a local inemavox installation; its HTTP API (port 8010) hasn’t been implemented.
+- **edge-tts** uses an online service and hasn’t been tested in this toolkit; the demo used local TTS. The `--ARCKHÉvox` mode calls `tts_direct.py` from a local ARCKHÉvox installation; its HTTP API (port 8010) hasn’t been implemented.
 - **Local voices may invent sounds**: tail trimming is conservative (it only removes sounds that are much quieter or very short).
   A loud “sound” without a word after the sentence is caught only by listening or transcribing; then use `--refazer N`.
 - **Continuity** between storyboards is requested (the previous one is used as a reference), but not guaranteed: check it.
@@ -170,4 +170,4 @@ exemplos/cordel/                             ← the complete demo
 
 ## License
 
-MIT © 2026 INEMA
+MIT © 2026 ARCKHÉ

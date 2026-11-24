@@ -73,7 +73,7 @@ Com kling/seedance, quem roda é o usuário, na conta dele; depois os clipes vol
 python3 SKILL_DIR/scripts/narrar.py --arquivo voz.wav            # o usuário gravou tudo
 python3 SKILL_DIR/scripts/narrar.py --falas-dir falas/           # o usuário gravou uma fala por cena
 python3 SKILL_DIR/scripts/narrar.py --comando '<tts> {texto} {saida}'   # qualquer TTS local
-python3 SKILL_DIR/scripts/narrar.py --inemavox --inemavox-dir <pasta> --ref <voz.wav>
+python3 SKILL_DIR/scripts/narrar.py --ARCKHÉvox --ARCKHÉvox-dir <pasta> --ref <voz.wav>
 python3 SKILL_DIR/scripts/narrar.py --edge                       # NÃO TESTADO (serviço online)
 ```
 Com TTS, o `narrar.py` corta a "cauda" que a voz às vezes inventa depois da frase e gera de novo a fala longa

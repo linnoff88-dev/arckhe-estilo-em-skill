@@ -4,8 +4,8 @@
 Modos (escolha um):
   --arquivo voz.wav            você gravou a narração inteira (um arquivo só; vai do início ao fim)
   --falas-dir pasta/           você gravou uma fala por cena: cena-01.wav, cena-02.wav ... (mp3/m4a também)
-  --inemavox --inemavox-dir D --ref voz-ref.wav [--engine chatterbox]
-                               TTS local do inemavox (D/tts_direct.py), clonando a voz de referência
+  --ARCKHÉvox --ARCKHÉvox-dir D --ref voz-ref.wav [--engine chatterbox]
+                               TTS local do ARCKHÉvox (D/tts_direct.py), clonando a voz de referência
   --edge [--voz pt-BR-AntonioNeural]
                                edge-tts (NÃO TESTADO neste kit: usa um serviço online da Microsoft)
   --comando 'modelo'           qualquer TTS por linha de comando; {texto} e {saida} (pasta) são trocados.
@@ -134,17 +134,17 @@ def tts_uma(modo, texto: str, pasta_fala: Path, a) -> Path:
         if r.returncode != 0:
             erro(f"edge-tts falhou: {r.stderr[-300:]}")
         return destino
-    if modo == "inemavox":
-        script = Path(a.inemavox_dir).expanduser() / "tts_direct.py"
+    if modo == "ARCKHÉvox":
+        script = Path(a.ARCKHÉvox_dir).expanduser() / "tts_direct.py"
         if not script.exists():
-            erro(f"não achei {script}; informe --inemavox-dir com a pasta do inemavox")
+            erro(f"não achei {script}; informe --ARCKHÉvox-dir com a pasta do ARCKHÉvox")
         cmd = ["python3", str(script), "--text", texto, "--lang", a.lingua, "--engine", a.engine,
                "--outdir", str(pasta_fala)]
         if a.ref:
             cmd += ["--ref", str(Path(a.ref).expanduser())]
         r = subprocess.run(cmd, capture_output=True, text=True, timeout=900)
         if r.returncode != 0:
-            erro(f"TTS do inemavox falhou ({r.returncode}): {r.stderr[-500:]}")
+            erro(f"TTS do ARCKHÉvox falhou ({r.returncode}): {r.stderr[-500:]}")
     else:  # comando livre
         cmd = a.comando.replace("{texto}", shlex.quote(texto)).replace("{saida}", shlex.quote(str(pasta_fala)))
         r = subprocess.run(cmd, shell=True, capture_output=True, text=True, timeout=900)
@@ -164,11 +164,11 @@ def main():
     g = ap.add_mutually_exclusive_group(required=True)
     g.add_argument("--arquivo", help="narração inteira gravada por você")
     g.add_argument("--falas-dir", help="uma fala gravada por cena (cena-01.wav ...)")
-    g.add_argument("--inemavox", action="store_true")
+    g.add_argument("--ARCKHÉvox", action="store_true")
     g.add_argument("--edge", action="store_true")
     g.add_argument("--comando")
-    ap.add_argument("--inemavox-dir", default="")
-    ap.add_argument("--ref", help="áudio de referência da voz (inemavox/chatterbox)")
+    ap.add_argument("--ARCKHÉvox-dir", default="")
+    ap.add_argument("--ref", help="áudio de referência da voz (ARCKHÉvox/chatterbox)")
     ap.add_argument("--engine", default="chatterbox")
     ap.add_argument("--lingua", default="pt")
     ap.add_argument("--voz", default="pt-BR-AntonioNeural", help="voz do edge-tts")
@@ -205,7 +205,7 @@ def main():
         buf = array.array("h", pcm[:n_total])
         buf.extend([0] * (n_total - len(buf)))
     else:
-        modo = "falas" if a.falas_dir else "inemavox" if a.inemavox else "edge" if a.edge else "comando"
+        modo = "falas" if a.falas_dir else "ARCKHÉvox" if a.ARCKHÉvox else "edge" if a.edge else "comando"
         relatorio["modo"] = modo
         buf = array.array("h", [0] * n_total)
         cursor = 0.0
