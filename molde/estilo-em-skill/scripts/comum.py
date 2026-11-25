@@ -1,6 +1,6 @@
 """Funções em comum dos scripts da skill "estilo em skill".
 
-Só usa a biblioteca padrão do Python + ffmpeg/ffprobe no PATH.
+Só usa a biblioteca padrêo do Python + ffmpeg/ffprobe no PATH.
 """
 from __future__ import annotations
 
@@ -12,7 +12,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-CENA_S = 2.5            # duração fixa de cada cena
+CENA_S = 2.5            # duraçêo fixa de cada cena
 MAX_CENAS_SB = 6        # máximo de cenas por storyboard
 FPS = 30
 
@@ -41,7 +41,7 @@ def aviso(msg: str):
 
 def precisa(programa: str):
     if shutil.which(programa) is None:
-        erro(f"'{programa}' não encontrado no PATH. Instale o ffmpeg (que traz o ffprobe) e tente de novo.")
+        erro(f"'{programa}' nêo encontrado no PATH. Instale o ffmpeg (que traz o ffprobe) e tente de novo.")
 
 
 def rodar(cmd: list[str], timeout: int = 1800) -> subprocess.CompletedProcess:
@@ -55,10 +55,10 @@ def rodar(cmd: list[str], timeout: int = 1800) -> subprocess.CompletedProcess:
 def parse_resolucao(txt: str) -> tuple[int, int]:
     m = re.fullmatch(r"\s*(\d+)\s*[xX×]\s*(\d+)\s*", str(txt))
     if not m:
-        erro(f"resolução inválida: {txt!r} (use LARGURAxALTURA, ex.: 1080x1920)")
+        erro(f"resoluçêo inválida: {txt!r} (use LARGURAxALTURA, ex.: 1080x1920)")
     w, h = int(m.group(1)), int(m.group(2))
     if w % 2 or h % 2:
-        erro(f"resolução {w}x{h}: largura e altura precisam ser pares (exigência do H.264)")
+        erro(f"resoluçêo {w}x{h}: largura e altura precisam ser pares (exigência do H.264)")
     return w, h
 
 
@@ -112,7 +112,7 @@ def volume(arquivo: str | Path, inicio: float | None = None, dur: float | None =
 def ler_json(caminho: str | Path) -> dict:
     p = Path(caminho)
     if not p.exists():
-        erro(f"arquivo não encontrado: {p}")
+        erro(f"arquivo nêo encontrado: {p}")
     return json.loads(p.read_text(encoding="utf-8"))
 
 

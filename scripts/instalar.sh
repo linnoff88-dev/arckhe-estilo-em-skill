@@ -5,11 +5,11 @@
 #   bash scripts/instalar.sh <nome-do-estilo> [claude|codex] [--estilo estilo.md] [--projeto PASTA]
 #                            [--destino PASTA] [--forcar]
 #
-#   claude (padrão) → <projeto>/.claude/skills/<nome>/
+#   claude (padrêo) → <projeto>/.claude/skills/<nome>/
 #   codex           → <projeto>/.agents/skills/<nome>/
 #   --estilo        → copia a sua bíblia do estilo para references/estilo.md
 #   --destino       → instala exatamente nesta pasta (ex.: exemplos/cordel/skill)
-#   --forcar        → sobrescreve uma instalação existente
+#   --forcar        → sobrescreve uma instalaçêo existente
 set -euo pipefail
 KIT="$(cd "$(dirname "$0")/.." && pwd)"
 MOLDE="$KIT/molde/estilo-em-skill"
@@ -25,7 +25,7 @@ while [ $# -gt 0 ]; do
     --projeto) PROJETO="$2"; shift ;;
     --destino) DESTINO="$2"; shift ;;
     --forcar) FORCAR=1 ;;
-    *) echo "opção desconhecida: $1"; exit 2 ;;
+    *) echo "opçêo desconhecida: $1"; exit 2 ;;
   esac
   shift
 done
@@ -46,7 +46,7 @@ sed -i "s/^name: .*/name: $NOME/" "$DESTINO/SKILL.md"
 sed -i "s/{{NOME_DO_ESTILO}}/$NOME/g" "$DESTINO/SKILL.md"
 
 if [ -n "$ESTILO" ]; then
-  [ -f "$ESTILO" ] || { echo "bíblia do estilo não encontrada: $ESTILO"; exit 1; }
+  [ -f "$ESTILO" ] || { echo "bíblia do estilo nêo encontrada: $ESTILO"; exit 1; }
   cp "$ESTILO" "$DESTINO/references/estilo.md"
 fi
 if grep -q "PREENCHER" "$DESTINO/references/estilo.md"; then

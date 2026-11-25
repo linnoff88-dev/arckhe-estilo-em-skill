@@ -70,7 +70,7 @@
       "storyboard": 1,
       "painel": 2,
       "texto_tela": "COPIAR",
-      "acao": "close das mãos da mulher passando linhas de um caderno para outro caderno idêntico",
+      "acao": "close das mêos da mulher passando linhas de um caderno para outro caderno idêntico",
       "camera": "pan_direita",
       "transicao_entrada": "dissolve",
       "transicao_saida": "dissolve",
@@ -87,7 +87,7 @@
       "camera": "zoom_out",
       "transicao_entrada": "dissolve",
       "transicao_saida": "dissolve",
-      "fala": "São horas que viram nada."
+      "fala": "Sêo horas que viram nada."
     },
     {
       "numero": 4,
@@ -161,7 +161,7 @@
       "storyboard": 2,
       "painel": 3,
       "texto_tela": "AVISA",
-      "acao": "o ajudante tocando um sino de mão e entregando um bilhete dobrado para a mulher",
+      "acao": "o ajudante tocando um sino de mêo e entregando um bilhete dobrado para a mulher",
       "camera": "zoom_in",
       "transicao_entrada": "dissolve",
       "transicao_saida": "dissolve",

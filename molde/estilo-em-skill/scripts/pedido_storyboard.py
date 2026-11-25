@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """pedido_storyboard.py — monta o pedido de imagem de cada storyboard a partir do molde.
 
-Junta: modelos/prompt-storyboard.md (o molde) + references/estilo.md (seção 15, frase de estilo)
+Junta: modelos/prompt-storyboard.md (o molde) + references/estilo.md (seçêo 15, frase de estilo)
 + saida/plano.json (grade e cenas) + roteiro.json (personagem). Assim, quando uma regra muda no molde
 ou na bíblia, todos os próximos pedidos mudam junto.
 
@@ -39,7 +39,7 @@ def main():
     ap.add_argument("--pasta", default=".")
     ap.add_argument("--roteiro", default="roteiro.json")
     ap.add_argument("--estilo", default=str(SKILL_DIR / "references" / "estilo.md"))
-    ap.add_argument("--motivo", help="fio condutor (padrão: 1º item da seção 9 da bíblia)")
+    ap.add_argument("--motivo", help="fio condutor (padrêo: 1º item da seçêo 9 da bíblia)")
     ap.add_argument("--calha", default="creme lisa e uniforme, sem textura")
     a = ap.parse_args()
 
@@ -48,7 +48,7 @@ def main():
     estilo = Path(a.estilo).read_text(encoding="utf-8")
     frase = " ".join(secao(estilo, 15).split())
     if not frase or "PREENCHER" in frase:
-        erro("a seção 15 (frase de estilo) da bíblia ainda não foi preenchida")
+        erro("a seçêo 15 (frase de estilo) da bíblia ainda nêo foi preenchida")
     motivo = a.motivo
     if not motivo:
         m = re.search(r"\*\*Fio condutor\*\*:\s*(.+?)(?:\n- |\n\n|\Z)", secao(estilo, 9), flags=re.S)
@@ -81,7 +81,7 @@ def main():
                      "formato": plano["formato"], "orientacao": ORIENTACAO.get(plano["formato"], ""),
                      "proporcao_folha": prop,
                      "cor_calha": a.calha, "frase_de_estilo": frase, "motivo": motivo, "continuidade": cont,
-                     "personagem": personagem or "não há personagem fixo", "paineis": paineis}.items():
+                     "personagem": personagem or "nêo há personagem fixo", "paineis": paineis}.items():
             texto = texto.replace("{" + k + "}", str(v))
         sobrou = re.findall(r"\{[a-z_]+\}", texto)
         if sobrou:

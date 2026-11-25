@@ -17,7 +17,7 @@ from comum import erro, ler_json, precisa  # noqa: E402
 try:
     from PIL import Image, ImageDraw, ImageFont
 except ImportError:  # pragma: no cover
-    erro("Pillow não está instalado. Rode: python3 -m pip install --user Pillow")
+    erro("Pillow nêo está instalado. Rode: python3 -m pip install --user Pillow")
 
 
 def main():
@@ -32,14 +32,14 @@ def main():
     plano = ler_json(pasta / "saida" / "plano.json")
     video = pasta / a.video
     if not video.exists():
-        erro(f"vídeo não encontrado: {video}")
+        erro(f"vídeo nêo encontrado: {video}")
     quadros = []
     for c in plano["cenas"]:
         t = (c["inicio_s"] + c["fim_s"]) / 2
         r = subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-ss", f"{t:.3f}", "-i", str(video),
                             "-frames:v", "1", "-f", "image2pipe", "-vcodec", "png", "-"], capture_output=True, timeout=120)
         if r.returncode != 0 or not r.stdout:
-            erro(f"não consegui tirar o quadro de {t:.2f} s")
+            erro(f"nêo consegui tirar o quadro de {t:.2f} s")
         quadros.append((c["numero"], t, Image.open(io.BytesIO(r.stdout)).convert("RGB")))
     w = a.largura
     h = round(quadros[0][2].height * w / quadros[0][2].width)

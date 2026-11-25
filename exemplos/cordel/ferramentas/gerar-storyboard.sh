@@ -16,7 +16,7 @@ mkdir -p exemplos/cordel/logs
 [ -f "$SAIDA" ] && mv "$SAIDA" "$SB/storyboard-$N-anterior-$(date +%H%M%S).png"
 REF=()
 if [ "$N" -gt 1 ]; then REF=(-i "$SB/storyboard-$((N-1)).png"); fi
-TEXTO="Use sua ferramenta de geração de imagem (image_gen) para criar UMA imagem e salve o PNG em $SAIDA dentro deste diretório. Não edite nenhum outro arquivo. Pedido da imagem:
+TEXTO="Use sua ferramenta de geraçêo de imagem (image_gen) para criar UMA imagem e salve o PNG em $SAIDA dentro deste diretório. Nêo edite nenhum outro arquivo. Pedido da imagem:
 
 $(cat "$PEDIDO")"
 printf '%s' "$TEXTO" | timeout 900 codex exec --skip-git-repo-check --dangerously-bypass-approvals-and-sandbox "${REF[@]}" - >"$LOG" 2>&1

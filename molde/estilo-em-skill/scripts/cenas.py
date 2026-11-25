@@ -4,16 +4,16 @@
 Regra: cada cena dura 2,5 s; cada storyboard tem até 6 cenas.
   10 s = 4 cenas / 1 storyboard     15 s = 6 / 1     20 s = 8 / 2
   30 s = 12 / 2                     45 s = 18 / 3
-Duração que não é múltiplo de 2,5 vai para o múltiplo mais próximo (17 → 17,5) com aviso.
+Duraçêo que nêo é múltiplo de 2,5 vai para o múltiplo mais próximo (17 → 17,5) com aviso.
 
 Uso:
   python3 cenas.py --tema "..." --duracao 30 --formato 9:16 [--resolucao 1080x1920]
                    [--motor local|kling|seedance] [--roteiro roteiro.json] [--pasta .]
-  python3 cenas.py --so-calcular --duracao 17        (só imprime a conta, não grava nada)
+  python3 cenas.py --so-calcular --duracao 17        (só imprime a conta, nêo grava nada)
 
 roteiro.json (opcional, escrito pela IA): {"cenas": [{"texto_tela": "...", "fala": "...",
   "acao": "...", "camera": "zoom_in", "transicao_entrada": "dissolve"}, ...]}
-Campos que faltarem ficam com o padrão ("PREENCHER" nos textos).
+Campos que faltarem ficam com o padrêo ("PREENCHER" nos textos).
 """
 from __future__ import annotations
 
@@ -91,7 +91,7 @@ def main():
     ap.add_argument("--tema", default="")
     ap.add_argument("--duracao", type=float, required=True, help="segundos")
     ap.add_argument("--formato", choices=list(FORMATOS), default="9:16")
-    ap.add_argument("--resolucao", help="LARGURAxALTURA (padrão do formato)")
+    ap.add_argument("--resolucao", help="LARGURAxALTURA (padrêo do formato)")
     ap.add_argument("--motor", choices=MOTORES, default="local")
     ap.add_argument("--roteiro", help="roteiro.json com os textos de cada cena")
     ap.add_argument("--pasta", default=".", help="pasta do projeto de vídeo")
@@ -99,10 +99,10 @@ def main():
     a = ap.parse_args()
 
     if a.duracao <= 0:
-        erro("a duração precisa ser maior que zero")
+        erro("a duraçêo precisa ser maior que zero")
     conta = calcular(a.duracao)
     if conta["normalizada"]:
-        aviso(f"{a.duracao:g} s não é múltiplo de 2,5 s; usando {conta['duracao_s']:g} s "
+        aviso(f"{a.duracao:g} s nêo é múltiplo de 2,5 s; usando {conta['duracao_s']:g} s "
               f"({conta['n_cenas']} cenas de 2,5 s)")
     resumo = (f"{conta['duracao_s']:g} s = {conta['n_cenas']} cenas / {conta['n_storyboards']} storyboard(s) "
               f"{conta['cenas_por_storyboard']}")
@@ -114,7 +114,7 @@ def main():
     w, h = resolucao
     alvo = {"9:16": 9 / 16, "16:9": 16 / 9, "1:1": 1.0}[a.formato]
     if abs(w / h - alvo) > 0.02:
-        aviso(f"resolução {w}x{h} não bate com o formato {a.formato}")
+        aviso(f"resoluçêo {w}x{h} nêo bate com o formato {a.formato}")
     roteiro = ler_json(a.roteiro) if a.roteiro else None
     plano = montar_plano(a.tema, a.duracao, a.formato, resolucao, a.motor, roteiro)
     destino = Path(a.pasta) / "saida" / "plano.json"

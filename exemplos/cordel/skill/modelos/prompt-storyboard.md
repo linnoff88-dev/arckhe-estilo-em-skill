@@ -1,16 +1,16 @@
 # Modelo do pedido de storyboard
 
 Preencha os campos `{…}` e envie à ferramenta de imagem. Um pedido por storyboard.
-`{frase_de_estilo}` = seção 15 de `references/estilo.md`, inteira. `{paineis}` = um item por cena do storyboard.
+`{frase_de_estilo}` = seçêo 15 de `references/estilo.md`, inteira. `{paineis}` = um item por cena do storyboard.
 
 ---
 
 Crie UMA imagem {proporcao_folha} que é um storyboard em grade de {linhas} linha(s) × {colunas} coluna(s),
-com {n_paineis} painéis do mesmo tamanho{vazio}. Cada painel tem proporção {formato} ({orientacao}). Entre os painéis e em volta deles,
+com {n_paineis} painéis do mesmo tamanho{vazio}. Cada painel tem proporçêo {formato} ({orientacao}). Entre os painéis e em volta deles,
 uma calha lisa de cor única ({cor_calha}), sem nenhum desenho. Leitura: da esquerda para a direita, de cima
 para baixo.
 
-ESTILO (vale para todos os painéis, sem exceção): {frase_de_estilo}
+ESTILO (vale para todos os painéis, sem exceçêo): {frase_de_estilo}
 
 TEXTO: em cada painel, só UMA palavra grande em maiúsculas, escrita exatamente como indicada abaixo, sem letras
 trocadas. A palavra ocupa NO MÁXIMO 60% da largura do painel, centrada, com margem livre dos dois lados (nunca

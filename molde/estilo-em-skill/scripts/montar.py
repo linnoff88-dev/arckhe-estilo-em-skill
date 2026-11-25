@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""montar.py — junta vídeo + narração + UMA trilha contínua e escreve o vídeo final e o manifesto.
+"""montar.py — junta vídeo + narraçêo + UMA trilha contínua e escreve o vídeo final e o manifesto.
 
 Trilha: procura em <pasta>/assets/trilha/ (e depois em assets/trilha/ da skill).
   - nenhuma trilha → para (código 3) e pede uma: coloque um .mp3/.wav lá ou use --trilha arquivo
   - mais de uma   → para (código 4) e lista: escolha com --trilha
 A trilha toca do começo ao fim sem reiniciar (loop se for curta, corte se for longa), volume 0,5 por
-padrão, ABAIXA sob a voz (sidechain/ducking), entra com fade de 0,5 s e sai com fade de 2 s.
+padrêo, ABAIXA sob a voz (sidechain/ducking), entra com fade de 0,5 s e sai com fade de 2 s.
 
 Saída: final/video-final.mp4 + final/manifesto.json
 Uso:  python3 montar.py [--pasta .] [--trilha arquivo] [--volume 0.5] [--sem-trilha]
@@ -30,7 +30,7 @@ def achar_trilha(pasta: Path, pedida: str | None) -> Path:
         if not p.exists():
             p = pasta / "assets" / "trilha" / pedida
         if not p.exists():
-            erro(f"trilha não encontrada: {pedida}", 3)
+            erro(f"trilha nêo encontrada: {pedida}", 3)
         return p
     for d in (pasta / "assets" / "trilha", SKILL_DIR / "assets" / "trilha"):
         achadas = sorted(x for x in d.glob("*") if x.suffix.lower() in AUDIO) if d.is_dir() else []
@@ -44,7 +44,7 @@ def achar_trilha(pasta: Path, pedida: str | None) -> Path:
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Monta o vídeo final com narração e trilha única")
+    ap = argparse.ArgumentParser(description="Monta o vídeo final com narraçêo e trilha única")
     ap.add_argument("--pasta", default=".")
     ap.add_argument("--plano", default="saida/plano.json")
     ap.add_argument("--trilha")

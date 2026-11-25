@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """recortar.py — corta um storyboard em painéis e deixa cada um no formato do vídeo.
 
-- Grade padrão 2 linhas × 3 colunas (9:16). Aceita 1×N e grades parciais (ex.: 5 painéis numa 2×3).
+- Grade padrêo 2 linhas × 3 colunas (9:16). Aceita 1×N e grades parciais (ex.: 5 painéis numa 2×3).
 - Procura a calha (faixa clara ou escura e lisa) entre os painéis perto de onde ela deveria estar;
-  se não achar, corta em grade fixa.
+  se nêo achar, corta em grade fixa.
 - Cada painel é redimensionado em "cover" (preenche sem distorcer, corta a sobra no centro).
-- Respiro (padrão 8% de cada lado): o painel fica um pouco menor, sobre a cor da calha, como uma gravura
-  impressa no papel. Assim o zoom/pan da animação não corta a palavra, mesmo quando a ferramenta de imagem
+- Respiro (padrêo 8% de cada lado): o painel fica um pouco menor, sobre a cor da calha, como uma gravura
+  impressa no papel. Assim o zoom/pan da animaçêo nêo corta a palavra, mesmo quando a ferramenta de imagem
   desenha a palavra de borda a borda (aconteceu na demo cordel). --respiro 0 desliga.
 
 Uso:
@@ -27,16 +27,16 @@ from comum import aviso, erro, gravar_json, ler_json, parse_resolucao  # noqa: E
 try:
     from PIL import Image, ImageFilter, ImageStat
 except ImportError:  # pragma: no cover
-    erro("Pillow não está instalado. Rode: python3 -m pip install --user Pillow")
+    erro("Pillow nêo está instalado. Rode: python3 -m pip install --user Pillow")
 
 
 def _perfil(img_l: Image.Image, eixo: str):
-    """Para cada coluna (eixo='x') ou linha (eixo='y'): (mediana, fração de pixels perto da mediana).
+    """Para cada coluna (eixo='x') ou linha (eixo='y'): (mediana, fraçêo de pixels perto da mediana).
 
-    Mediana + fração (e não média + desvio) para tolerar um detalhe que cruza a calha, como o fio
+    Mediana + fraçêo (e nêo média + desvio) para tolerar um detalhe que cruza a calha, como o fio
     condutor passando de um painel para o outro (aconteceu na demo cordel)."""
     w, h = img_l.size
-    # reduz o outro eixo para acelerar sem perder a posição exata no eixo medido
+    # reduz o outro eixo para acelerar sem perder a posiçêo exata no eixo medido
     if eixo == "x":
         pequena = img_l.resize((w, max(1, min(h, 400))))
         W, H = pequena.size
@@ -155,7 +155,7 @@ def recortar(arquivo, linhas, colunas, paineis, resolucao, saida, inicio=1, pref
     lum = img.convert("L")
     w, h = resolucao
     linhas_iv, achou_y = achar_cortes(lum, linhas, "y")
-    # colunas medidas em cada faixa de linha (a calha vertical pode não atravessar a folha toda)
+    # colunas medidas em cada faixa de linha (a calha vertical pode nêo atravessar a folha toda)
     saida = Path(saida)
     saida.mkdir(parents=True, exist_ok=True)
     gerados, n, metodo = [], 0, []
@@ -188,12 +188,12 @@ def main():
     ap.add_argument("storyboard", nargs="?")
     ap.add_argument("--linhas", type=int, default=2)
     ap.add_argument("--colunas", type=int, default=3)
-    ap.add_argument("--paineis", type=int, help="quantos painéis usar (padrão: linhas×colunas)")
+    ap.add_argument("--paineis", type=int, help="quantos painéis usar (padrêo: linhas×colunas)")
     ap.add_argument("--resolucao", default="1080x1920")
     ap.add_argument("--saida", default="saida/paineis")
     ap.add_argument("--inicio", type=int, default=1, help="número do primeiro painel (cena)")
     ap.add_argument("--respiro", type=float, default=0.08, help="margem de cada lado, 0–0.2 (0 = cover puro)")
-    ap.add_argument("--plano", help="plano.json (lê grade, nomes e resolução de lá)")
+    ap.add_argument("--plano", help="plano.json (lê grade, nomes e resoluçêo de lá)")
     ap.add_argument("--storyboard", dest="sb", type=int, help="número do storyboard no plano")
     ap.add_argument("--pasta", default=".")
     a = ap.parse_args()
@@ -203,12 +203,12 @@ def main():
         pasta = Path(a.pasta)
         alvo = [s for s in plano["storyboards"] if a.sb in (None, s["numero"])]
         if not alvo:
-            erro(f"storyboard {a.sb} não existe no plano")
+            erro(f"storyboard {a.sb} nêo existe no plano")
         res = parse_resolucao(plano["resolucao"])
         for s in alvo:
             arq = pasta / s["arquivo"]
             if not arq.exists():
-                erro(f"storyboard não encontrado: {arq}")
+                erro(f"storyboard nêo encontrado: {arq}")
             info = recortar(arq, s["linhas"], s["colunas"], s["paineis"], res, pasta / "saida" / "paineis",
                             inicio=s["cenas"][0], prefixo="cena", respiro=a.respiro)
             gravar_json(pasta / "saida" / "paineis" / f"recorte-storyboard-{s['numero']}.json", info)
@@ -220,7 +220,7 @@ def main():
         erro("informe o arquivo do storyboard ou --plano")
     paineis = a.paineis or a.linhas * a.colunas
     if paineis > a.linhas * a.colunas:
-        erro(f"{paineis} painéis não cabem numa grade {a.linhas}×{a.colunas}")
+        erro(f"{paineis} painéis nêo cabem numa grade {a.linhas}×{a.colunas}")
     info = recortar(a.storyboard, a.linhas, a.colunas, paineis, parse_resolucao(a.resolucao), a.saida, a.inicio,
                     respiro=a.respiro)
     print(json.dumps({"paineis": len(info["paineis"]), "metodo": info["metodo"],

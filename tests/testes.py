@@ -66,7 +66,7 @@ CORES = [(200, 40, 40), (40, 160, 60), (40, 70, 200), (220, 170, 30), (150, 50, 
 
 
 def painel_textura(w, h, cor, rotulo):
-    """Painel com textura (não é 'liso', senão confunde a busca de calha)."""
+    """Painel com textura (nêo é 'liso', senêo confunde a busca de calha)."""
     im = Image.new("RGB", (w, h), cor)
     d = ImageDraw.Draw(im)
     for i in range(0, w + h, 18):
@@ -140,7 +140,7 @@ def confere_recorte(pasta, caixas, info, tol=4):
         assert all(abs(g - e) <= tol for g, e in zip(got, cx)), f"painel {i + 1}: {got} ≠ {cx}"
         im = Image.open(p["arquivo"])
         assert im.size == (270, 480), im.size
-        # canto do painel recortado tem a cor (escurecida ou não) do painel certo, não a da calha
+        # canto do painel recortado tem a cor (escurecida ou nêo) do painel certo, nêo a da calha
         r, g, b = im.convert("RGB").resize((1, 1), Image.BOX).getpixel((0, 0))
         er, eg, eb = CORES[i % 6]
         assert abs(r - er) + abs(g - eg) + abs(b - eb) < 200, f"painel {i + 1} cor {(r, g, b)} ≠ {CORES[i % 6]}"
@@ -205,7 +205,7 @@ def t_recortar_fixa():
     confere_recorte(TMP / "recfixa", caixas, info, tol=6)
 
 
-@caso("recortar: respiro põe o painel sobre a cor da calha (zoom não corta a palavra)")
+@caso("recortar: respiro põe o painel sobre a cor da calha (zoom nêo corta a palavra)")
 def t_recortar_respiro():
     import recortar
     arq = TMP / "sb-2x3.png"
@@ -253,7 +253,7 @@ def t_fluxo_ok():
         d = float(probe(p / "saida" / "clipes" / f"cena-{i:02d}.mp4")["format"]["duration"])
         assert abs(d - 2.5) < 0.05, f"clipe {i}: {d}"
     mudo = probe(p / "saida" / "video-mudo.mp4")
-    assert abs(float(mudo["format"]["duration"]) - 5.0) < 0.05, "dissolve não pode encurtar o vídeo"
+    assert abs(float(mudo["format"]["duration"]) - 5.0) < 0.05, "dissolve nêo pode encurtar o vídeo"
     py(SCRIPTS / "narrar.py", "--pasta", p, "--comando", VOZ_TOM)
     enc = json.loads((p / "saida" / "voz" / "encaixe.json").read_text())
     assert len(enc["falas"]) == 2 and enc["falas"][1]["inicio_s"] >= 2.5
@@ -272,7 +272,7 @@ def t_ducking():
     import comum
     p = TMP / "fluxo-ok"
     final = p / "final" / "video-final.mp4"
-    # sem voz (0,0–0,1 s não tem fala) x com voz: a mistura com voz não pode ser só soma (ducking age)
+    # sem voz (0,0–0,1 s nêo tem fala) x com voz: a mistura com voz nêo pode ser só soma (ducking age)
     # voz (220 Hz) nas cenas 0,12–1,52 s e 2,62–4,02 s; trilha = 330 Hz. Isola só a trilha com passa-faixa
     # estreito e compara: durante a fala x na pausa entre as falas (2,1–2,5 s).
     musica_isolada = TMP / "musica-sob-voz.wav"
@@ -280,7 +280,7 @@ def t_ducking():
     durante = comum.volume(musica_isolada, 0.6, 0.6)["mean"]
     fora = comum.volume(musica_isolada, 2.15, 0.35)["mean"]
     assert fora > -45, f"música sumiu na pausa: {fora}"
-    assert durante < fora - 3, f"música não abaixou sob a voz (durante {durante} dB, fora {fora} dB)"
+    assert durante < fora - 3, f"música nêo abaixou sob a voz (durante {durante} dB, fora {fora} dB)"
 
 
 @caso("montar: sem trilha para com código 3; com 2 trilhas pede --trilha (código 4)")
@@ -308,15 +308,15 @@ def t_validar_sem_trilha():
     assert r.returncode == 1 and "sem trilha" in r.stdout and "FALHOU" in r.stdout, r.stdout
 
 
-@caso("validar FALHA: duração errada (pedido 10 s, vídeo de 5 s)")
+@caso("validar FALHA: duraçêo errada (pedido 10 s, vídeo de 5 s)")
 def t_validar_duracao():
     r = py(SCRIPTS / "validar.py", "--pasta", TMP / "fluxo-ok", "--duracao", 10, ok=False)
     assert r.returncode == 1 and "fora do pedido" in r.stdout, r.stdout
     r = py(SCRIPTS / "validar.py", "--pasta", TMP / "fluxo-ok", "--resolucao", "1080x1920", ok=False)
-    assert r.returncode == 1 and "resolução" in r.stdout
+    assert r.returncode == 1 and "resoluçêo" in r.stdout
 
 
-@caso("validar FALHA: narração muda (mesmo com a trilha tocando por cima)")
+@caso("validar FALHA: narraçêo muda (mesmo com a trilha tocando por cima)")
 def t_validar_mudo():
     p = TMP / "mudo"
     if p.exists():
@@ -325,7 +325,7 @@ def t_validar_mudo():
     ff("-f", "lavfi", "-i", "anullsrc=r=48000:cl=mono", "-t", 5, p / "saida" / "voz" / "narracao.wav")
     py(SCRIPTS / "montar.py", "--pasta", p)
     r = py(SCRIPTS / "validar.py", "--pasta", p, ok=False)
-    assert r.returncode == 1 and "narração muda" in r.stdout, r.stdout
+    assert r.returncode == 1 and "narraçêo muda" in r.stdout, r.stdout
 
 
 @caso("narrar: fala longa demais para o nº de palavras é gerada de novo (fica a mais curta)")
@@ -345,7 +345,7 @@ ffmpeg -y -loglevel error -f lavfi -i sine=frequency=220:duration=$d "$1/fala.wa
     py(SCRIPTS / "narrar.py", "--pasta", p, "--comando", VOZ_TOM)      # deixa o projeto como estava
 
 
-@caso("narrar: corta a cauda baixa que o TTS inventa, mas não a última palavra de verdade")
+@caso("narrar: corta a cauda baixa que o TTS inventa, mas nêo a última palavra de verdade")
 def t_narrar_cauda():
     p = TMP / "fluxo-ok"
 
@@ -389,14 +389,14 @@ def t_narrar_mudo():
     assert r.returncode != 0 and "MUDA" in r.stderr, r.stderr[-300:]
 
 
-@caso("animar: motores kling/seedance só geram prompts (não testados) e exigem --so-prompts")
+@caso("animar: motores kling/seedance só geram prompts (nêo testados) e exigem --so-prompts")
 def t_motores_prompts():
     p = TMP / "fluxo-ok"
     r = py(SCRIPTS / "animar.py", "--pasta", p, "--motor", "kling", ok=False)
     assert r.returncode != 0 and "--so-prompts" in r.stderr
     py(SCRIPTS / "animar.py", "--pasta", p, "--motor", "kling", "--so-prompts")
     txt = (p / "saida" / "prompts-kling.sh").read_text()
-    assert "kling image_to_video" in txt and "NÃO TESTADO" in txt and txt.count("image_to_video") == 2
+    assert "kling image_to_video" in txt and "NêO TESTADO" in txt and txt.count("image_to_video") == 2
     py(SCRIPTS / "animar.py", "--pasta", p, "--motor", "seedance", "--so-prompts")
     md = (p / "saida" / "prompts-seedance.md").read_text()
     assert "Sem música" in md and "0.0–2.5 s" in md
@@ -414,7 +414,7 @@ def t_pedido_storyboard():
     assert 'Painel 2 — palavra "CENA 2"' in txt and "1 linha(s) × 2 coluna(s)" in txt and "{" not in txt, r.stdout
     est.write_text("## 15. Frase de estilo\nPREENCHER\n")
     r = py(SCRIPTS / "pedido_storyboard.py", "--pasta", p, "--estilo", est, ok=False)
-    assert r.returncode != 0 and "não foi preenchida" in r.stderr
+    assert r.returncode != 0 and "nêo foi preenchida" in r.stderr
 
 
 # ---------------------------------------------------------------- instalar.sh
@@ -434,7 +434,7 @@ def t_instalar():
         assert (dest / "scripts" / "validar.py").exists()
     r = subprocess.run(["bash", str(RAIZ / "scripts" / "instalar.sh"), "meu-estilo", "--projeto", str(proj)],
                        capture_output=True, text=True)
-    assert r.returncode != 0 and "--forcar" in r.stdout, "não pode sobrescrever sem --forcar"
+    assert r.returncode != 0 and "--forcar" in r.stdout, "nêo pode sobrescrever sem --forcar"
 
 
 # ---------------------------------------------------------------- quadros.py

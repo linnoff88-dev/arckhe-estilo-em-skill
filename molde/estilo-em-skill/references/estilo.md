@@ -2,7 +2,7 @@
 
 > Preenchida pela IA com `prompts/criar-skill.md` a partir dos quadros do vídeo de referência.
 > Descreve a LINGUAGEM VISUAL. Nada de conteúdo, personagens, logos ou textos do vídeo original.
-> Cada seção termina com regras que dá para conferir olhando a imagem.
+> Cada seçêo termina com regras que dá para conferir olhando a imagem.
 
 ## 1. Em uma frase
 PREENCHER — como você descreveria o estilo para um ilustrador, em uma frase.
@@ -15,19 +15,19 @@ PREENCHER — como você descreveria o estilo para um ilustrador, em uma frase.
 | destaque 1 | PREENCHER | #PREENCHER | |
 | destaque 2 | PREENCHER | #PREENCHER | |
 | motivo/fio condutor | PREENCHER | #PREENCHER | |
-Proporção aproximada: PREENCHER (ex.: 60% fundo, 30% tinta, 10% destaques).
+Proporçêo aproximada: PREENCHER (ex.: 60% fundo, 30% tinta, 10% destaques).
 
 ## 3. Tipografia (texto desenhado na imagem)
 - Tipo de letra: PREENCHER
 - Caixa, peso, espaçamento: PREENCHER
-- Tamanho em relação ao quadro: PREENCHER
+- Tamanho em relaçêo ao quadro: PREENCHER
 - Onde fica: PREENCHER
 
-## 4. Composição
+## 4. Composiçêo
 PREENCHER — enquadramento, onde fica o assunto, quanto respiro, moldura, profundidade.
 
-## 5. Tratamento da ilustração
-PREENCHER — técnica aparente (traço, preenchimento, contorno), nível de detalhe, como são rostos e mãos.
+## 5. Tratamento da ilustraçêo
+PREENCHER — técnica aparente (traço, preenchimento, contorno), nível de detalhe, como sêo rostos e mêos.
 
 ## 6. Formas
 PREENCHER
@@ -44,16 +44,16 @@ PREENCHER — elementos que voltam em todo quadro (o "fio condutor" que liga as 
 ## 10. Câmera
 PREENCHER — planos (geral, médio, close), ângulo, como a câmera se move.
 
-## 11. Princípios de animação
+## 11. Princípios de animaçêo
 PREENCHER — o que se mexe, quanto, com que suavidade.
 
 ## 12. Transições
 PREENCHER
 
 ## 13. Ritmo
-PREENCHER — quanto tempo cada ideia fica na tela, densidade de informação.
+PREENCHER — quanto tempo cada ideia fica na tela, densidade de informaçêo.
 
-## 14. O que NÃO fazer
+## 14. O que NêO fazer
 - PREENCHER
 
 ## 15. Frase de estilo para colar em todo pedido de imagem

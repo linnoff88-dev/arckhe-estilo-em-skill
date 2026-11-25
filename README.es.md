@@ -134,10 +134,10 @@ Resultado (comprobado con `validar.py`):
 ```
   ok   manifesto com status completo
   ok   30 arquivos do manifesto existem
-  ok   duração 30.00 s (pedido 30 s ± 0,5)
-  ok   resolução 1080x1920
+  ok   duraçêo 30.00 s (pedido 30 s ± 0,5)
+  ok   resoluçêo 1080x1920
   ok   áudio do vídeo com som (média -20.2 dB, pico -3.9 dB)
-  ok   narração com voz (média -18.9 dB)
+  ok   narraçêo com voz (média -18.9 dB)
 PASSOU: vídeo conferido, pode dizer pronto.
 ```
 

@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """animar.py — transforma os painéis em vídeo.
 
-MOTOR LOCAL (padrão, grátis, testado): sem IA de vídeo. Cada painel vira um clipe de 2,5 s com
+MOTOR LOCAL (padrêo, grátis, testado): sem IA de vídeo. Cada painel vira um clipe de 2,5 s com
 movimento de câmera lento (zoom in/out ou pan, zoom máx. 1,25×), e as cenas se ligam por dissolve.
-O resultado tem a duração exata do plano (dissolve não encurta o vídeo: cada cena "sobra" metade do
+O resultado tem a duraçêo exata do plano (dissolve nêo encurta o vídeo: cada cena "sobra" metade do
 dissolve para os dois lados). Quadro a quadro com Pillow, codificado pelo ffmpeg, 30 fps, determinístico.
 
-Saídas: saida/clipes/cena-NN.mp4 (2,5 s cada, sem transição) e saida/video-mudo.mp4 (tudo junto).
+Saídas: saida/clipes/cena-NN.mp4 (2,5 s cada, sem transiçêo) e saida/video-mudo.mp4 (tudo junto).
 
-MOTORES OPCIONAIS — NÃO TESTADOS NESTE KIT (só geram texto para você usar na sua conta):
+MOTORES OPCIONAIS — NêO TESTADOS NESTE KIT (só geram texto para você usar na sua conta):
   --motor kling --so-prompts     → saida/prompts-kling.sh   (comandos da CLI oficial `kling`)
   --motor seedance --so-prompts  → saida/prompts-seedance.md (um prompt por storyboard para colar no site)
 
@@ -28,7 +28,7 @@ from comum import CENA_S, aviso, erro, ler_json, parse_resolucao, precisa  # noq
 try:
     from PIL import Image
 except ImportError:  # pragma: no cover
-    erro("Pillow não está instalado. Rode: python3 -m pip install --user Pillow")
+    erro("Pillow nêo está instalado. Rode: python3 -m pip install --user Pillow")
 
 ZOOM_TETO = 1.25
 CAMERAS = {"zoom_in", "zoom_out", "pan_direita", "pan_esquerda", "pan_cima", "pan_baixo", "parado"}
@@ -91,7 +91,7 @@ def animar_local(pasta: Path, plano: dict, dissolve: float, zmax: float, crf: in
     for c in cenas:
         arq = pasta / "saida" / "paineis" / f"cena-{c['numero']:02d}.png"
         if not arq.exists():
-            erro(f"painel não encontrado: {arq} (rode o recortar.py antes)")
+            erro(f"painel nêo encontrado: {arq} (rode o recortar.py antes)")
         img = Image.open(arq).convert("RGB")
         if img.size != (w, h):
             aviso(f"{arq.name} tem {img.size[0]}x{img.size[1]}; ajustando para {w}x{h}")
@@ -144,15 +144,15 @@ def animar_local(pasta: Path, plano: dict, dissolve: float, zmax: float, crf: in
 
 
 def prompts_kling(pasta: Path, plano: dict):
-    """NÃO TESTADO: só escreve os comandos. Nada é enviado."""
+    """NêO TESTADO: só escreve os comandos. Nada é enviado."""
     linhas = ["#!/usr/bin/env bash",
-              "# NÃO TESTADO NESTE KIT. Gasta créditos da SUA conta Kling. Confira cada prompt antes de rodar.",
+              "# NêO TESTADO NESTE KIT. Gasta créditos da SUA conta Kling. Confira cada prompt antes de rodar.",
               "# O Kling gera no mínimo 3 s: depois corte cada clipe para 2,5 s, ex.:",
               "#   ffmpeg -i in.mp4 -t 2.5 -c:v libx264 -an saida/clipes/cena-01.mp4",
               "set -e", ""]
     for c in plano["cenas"]:
-        prompt = (f"Anime esta ilustração mantendo o estilo exato (sem mudar traço, cores ou texto). "
-                  f"Ação: {c['acao']}. Câmera: {c['camera'].replace('_', ' ')}, lenta e suave. "
+        prompt = (f"Anime esta ilustraçêo mantendo o estilo exato (sem mudar traço, cores ou texto). "
+                  f"Açêo: {c['acao']}. Câmera: {c['camera'].replace('_', ' ')}, lenta e suave. "
                   f"O texto '{c['texto_tela']}' fica parado e legível. Sem música, sem fala, sem texto novo.")
         prompt = prompt.replace('"', "'")
         linhas.append(f"# cena {c['numero']} ({c['inicio_s']}–{c['fim_s']} s)")
@@ -161,13 +161,13 @@ def prompts_kling(pasta: Path, plano: dict):
         linhas.append("")
     destino = pasta / "saida" / "prompts-kling.sh"
     destino.write_text("\n".join(linhas), encoding="utf-8")
-    print(f"comandos gravados em {destino} (NÃO TESTADO; nada foi enviado)")
+    print(f"comandos gravados em {destino} (NêO TESTADO; nada foi enviado)")
 
 
 def prompts_seedance(pasta: Path, plano: dict):
-    """NÃO TESTADO: um prompt por storyboard para colar no site do motor."""
+    """NêO TESTADO: um prompt por storyboard para colar no site do motor."""
     partes = ["# Prompts de vídeo por storyboard (Seedance / Higgsfield)", "",
-              "> NÃO TESTADO NESTE KIT. Cole cada bloco no site junto com a imagem do storyboard.", ""]
+              "> NêO TESTADO NESTE KIT. Cole cada bloco no site junto com a imagem do storyboard.", ""]
     for s in plano["storyboards"]:
         cenas = [c for c in plano["cenas"] if c["storyboard"] == s["numero"]]
         dur = len(cenas) * CENA_S
@@ -180,20 +180,20 @@ def prompts_seedance(pasta: Path, plano: dict):
         for c in cenas:
             t0 = c["inicio_s"] - cenas[0]["inicio_s"]
             partes.append(f"{t0:.1f}–{t0 + CENA_S:.1f} s | painel {c['painel']} | câmera: {c['camera'].replace('_', ' ')} "
-                          f"| ação: {c['acao']} | texto na tela: \"{c['texto_tela']}\" entra com leve escala, "
+                          f"| açêo: {c['acao']} | texto na tela: \"{c['texto_tela']}\" entra com leve escala, "
                           f"fica legível | entrada: {c['transicao_entrada']} | fala: \"{c['fala']}\"")
         partes += ["", "Transições suaves (dissolve). Sem música e sem efeitos sonoros (a trilha entra depois). "
-                   "Não invente texto novo.", "```", ""]
+                   "Nêo invente texto novo.", "```", ""]
     destino = pasta / "saida" / "prompts-seedance.md"
     destino.write_text("\n".join(partes), encoding="utf-8")
-    print(f"prompts gravados em {destino} (NÃO TESTADO; nada foi enviado)")
+    print(f"prompts gravados em {destino} (NêO TESTADO; nada foi enviado)")
 
 
 def main():
     ap = argparse.ArgumentParser(description="Anima os painéis (motor local) ou gera prompts de motores externos")
     ap.add_argument("--pasta", default=".")
     ap.add_argument("--plano", default="saida/plano.json")
-    ap.add_argument("--motor", choices=["local", "kling", "seedance"], help="padrão: o do plano")
+    ap.add_argument("--motor", choices=["local", "kling", "seedance"], help="padrêo: o do plano")
     ap.add_argument("--so-prompts", action="store_true", help="kling/seedance: só escreve os prompts")
     ap.add_argument("--dissolve", type=float, default=0.5, help="segundos de dissolve entre cenas (0 = corte)")
     ap.add_argument("--zoom-max", type=float, default=1.18)
@@ -212,7 +212,7 @@ def main():
     if motor == "local":
         animar_local(pasta, plano, a.dissolve, max(1.0, a.zoom_max), a.crf, a.fade_final)
     elif not a.so_prompts:
-        erro(f"o motor '{motor}' não é testado neste kit; use --so-prompts para gerar os prompts e rodar na sua conta")
+        erro(f"o motor '{motor}' nêo é testado neste kit; use --so-prompts para gerar os prompts e rodar na sua conta")
     elif motor == "kling":
         prompts_kling(pasta, plano)
     else:

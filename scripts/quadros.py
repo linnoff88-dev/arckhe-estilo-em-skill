@@ -3,7 +3,7 @@
 
 Como escolhe:
   1. procura trocas de cena com o ffmpeg (select='gt(scene,LIMIAR)'), mais o primeiro trecho do vídeo
-     (a detecção nunca marca a abertura);
+     (a detecçêo nunca marca a abertura);
   2. descarta quadros parecidos: mesmo desenho (hash de diferença 9×8 com distância de Hamming pequena)
      E mesmas cores (miniatura 8×8 colorida quase igual). Mesmo layout com outra paleta conta como diferente;
   3. se sobrar menos que o mínimo (vídeo com poucas trocas), completa com quadros espaçados no tempo,
@@ -28,7 +28,7 @@ from pathlib import Path
 try:
     from PIL import Image, ImageDraw, ImageFont
 except ImportError:
-    print("ERRO: Pillow não está instalado. Rode: python3 -m pip install --user Pillow", file=sys.stderr)
+    print("ERRO: Pillow nêo está instalado. Rode: python3 -m pip install --user Pillow", file=sys.stderr)
     sys.exit(2)
 
 
@@ -43,7 +43,7 @@ def duracao(video: Path) -> float:
     try:
         return float(r.stdout.strip())
     except ValueError:
-        erro(f"não consegui ler a duração de {video}")
+        erro(f"nêo consegui ler a duraçêo de {video}")
 
 
 def trocas_de_cena(video: Path, limiar: float) -> list[float]:
@@ -116,8 +116,8 @@ def folha(quadros: list[dict], destino: Path):
 def main():
     ap = argparse.ArgumentParser(description="Escolhe quadros diferentes de um vídeo e monta a folha")
     ap.add_argument("video")
-    ap.add_argument("--n", type=int, default=8, help="máximo de quadros (padrão 8)")
-    ap.add_argument("--min", type=int, default=5, help="mínimo de quadros (padrão 5)")
+    ap.add_argument("--n", type=int, default=8, help="máximo de quadros (padrêo 8)")
+    ap.add_argument("--min", type=int, default=5, help="mínimo de quadros (padrêo 5)")
     ap.add_argument("--saida", default="estilo/quadros")
     ap.add_argument("--limiar", type=float, default=0.3, help="sensibilidade da troca de cena (0–1)")
     ap.add_argument("--parecido", type=int, default=12, help="distância de hash abaixo da qual é 'parecido'")
@@ -125,10 +125,10 @@ def main():
 
     for prog in ("ffmpeg", "ffprobe"):
         if shutil.which(prog) is None:
-            erro(f"'{prog}' não encontrado. Instale o ffmpeg.")
+            erro(f"'{prog}' nêo encontrado. Instale o ffmpeg.")
     video = Path(a.video)
     if not video.exists():
-        erro(f"vídeo não encontrado: {video}")
+        erro(f"vídeo nêo encontrado: {video}")
     a.min = max(1, min(a.min, a.n))
     dur = duracao(video)
     saida = Path(a.saida)
@@ -136,7 +136,7 @@ def main():
     for velho in saida.glob("quadro-*.jpg"):
         velho.unlink()
 
-    # candidatos: abertura + logo depois de cada troca (0,25 s depois, para fugir do quadro de transição)
+    # candidatos: abertura + logo depois de cada troca (0,25 s depois, para fugir do quadro de transiçêo)
     trocas = trocas_de_cena(video, a.limiar)
     cand = [(min(0.3, dur / 4), "abertura")] + [(min(t + 0.25, max(0.0, dur - 0.05)), "troca") for t in trocas]
     escolhidos: list[dict] = []

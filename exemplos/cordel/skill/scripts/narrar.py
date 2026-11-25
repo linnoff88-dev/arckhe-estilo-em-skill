@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
-"""narrar.py — narração numa voz só para o vídeo todo, cada fala encaixada na sua cena.
+"""narrar.py — narraçêo numa voz só para o vídeo todo, cada fala encaixada na sua cena.
 
 Modos (escolha um):
-  --arquivo voz.wav            você gravou a narração inteira (um arquivo só; vai do início ao fim)
+  --arquivo voz.wav            você gravou a narraçêo inteira (um arquivo só; vai do início ao fim)
   --falas-dir pasta/           você gravou uma fala por cena: cena-01.wav, cena-02.wav ... (mp3/m4a também)
   --ARCKHÉvox --ARCKHÉvox-dir D --ref voz-ref.wav [--engine chatterbox]
                                TTS local do ARCKHÉvox (D/tts_direct.py), clonando a voz de referência
   --edge [--voz pt-BR-AntonioNeural]
-                               edge-tts (NÃO TESTADO neste kit: usa um serviço online da Microsoft)
-  --comando 'modelo'           qualquer TTS por linha de comando; {texto} e {saida} (pasta) são trocados.
+                               edge-tts (NêO TESTADO neste kit: usa um serviço online da Microsoft)
+  --comando 'modelo'           qualquer TTS por linha de comando; {texto} e {saida} (pasta) sêo trocados.
                                O comando deve criar UM arquivo de áudio dentro de {saida}.
 
 Encaixe: corta o silêncio das pontas de cada fala, põe no começo da sua cena (+0,12 s). Se a fala
-passar do tempo da cena, acelera até 15% (atempo); se ainda não couber, avisa e sugere encurtar.
-Confere que cada fala e a narração final NÃO são silêncio (já houve TTS que gravava áudio mudo sem erro).
+passar do tempo da cena, acelera até 15% (atempo); se ainda nêo couber, avisa e sugere encurtar.
+Confere que cada fala e a narraçêo final NêO sêo silêncio (já houve TTS que gravava áudio mudo sem erro).
 
-Saída: saida/voz/narracao.wav (48 kHz mono, duração exata do vídeo) + saida/voz/encaixe.json
+Saída: saida/voz/narracao.wav (48 kHz mono, duraçêo exata do vídeo) + saida/voz/encaixe.json
 """
 from __future__ import annotations
 
@@ -46,7 +46,7 @@ def ler_pcm(arquivo: Path, filtro: str | None = None) -> array.array:
     cmd += ["-ac", "1", "-ar", str(TAXA), "-f", "s16le", "-"]
     r = subprocess.run(cmd, capture_output=True, timeout=600)
     if r.returncode != 0:
-        erro(f"não consegui ler o áudio {arquivo}: {r.stderr.decode(errors='ignore')[-300:]}")
+        erro(f"nêo consegui ler o áudio {arquivo}: {r.stderr.decode(errors='ignore')[-300:]}")
     a = array.array("h")
     a.frombytes(r.stdout[: len(r.stdout) // 2 * 2])
     return a
@@ -90,7 +90,7 @@ def cortar_cauda(pcm: array.array, palavras: int) -> tuple[array.array, float]:
     while i < n:
         if voz[i]:
             j = i
-            while j < n and (voz[j] or any(voz[j:j + 6])):    # pausa menor que 120 ms não separa
+            while j < n and (voz[j] or any(voz[j:j + 6])):    # pausa menor que 120 ms nêo separa
                 j += 1
             segs.append((i, j))
             i = j
@@ -117,7 +117,7 @@ def limpar(arq: Path, texto: str, tts: bool) -> tuple[array.array, float]:
 
 
 def limite_fala(texto: str) -> float:
-    """Duração máxima razoável de uma fala (s). Acima disso o TTS provavelmente inventou um pedaço a mais
+    """Duraçêo máxima razoável de uma fala (s). Acima disso o TTS provavelmente inventou um pedaço a mais
     (visto com chatterbox em frases curtas: 4 palavras viraram 4,6 s)."""
     return 0.42 * len(texto.split()) + 0.9
 
@@ -137,7 +137,7 @@ def tts_uma(modo, texto: str, pasta_fala: Path, a) -> Path:
     if modo == "ARCKHÉvox":
         script = Path(a.ARCKHÉvox_dir).expanduser() / "tts_direct.py"
         if not script.exists():
-            erro(f"não achei {script}; informe --ARCKHÉvox-dir com a pasta do ARCKHÉvox")
+            erro(f"nêo achei {script}; informe --ARCKHÉvox-dir com a pasta do ARCKHÉvox")
         cmd = ["python3", str(script), "--text", texto, "--lang", a.lingua, "--engine", a.engine,
                "--outdir", str(pasta_fala)]
         if a.ref:
@@ -153,16 +153,16 @@ def tts_uma(modo, texto: str, pasta_fala: Path, a) -> Path:
     candidatos = [p for p in pasta_fala.rglob("*") if p.suffix.lower() in EXTS and "ref" not in p.stem
                   and "source" not in p.stem]
     if not candidatos:
-        erro(f"o TTS não criou nenhum áudio em {pasta_fala}")
+        erro(f"o TTS nêo criou nenhum áudio em {pasta_fala}")
     return max(candidatos, key=lambda p: p.stat().st_mtime)
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Narração numa voz só, encaixada nas cenas")
+    ap = argparse.ArgumentParser(description="Narraçêo numa voz só, encaixada nas cenas")
     ap.add_argument("--pasta", default=".")
     ap.add_argument("--plano", default="saida/plano.json")
     g = ap.add_mutually_exclusive_group(required=True)
-    g.add_argument("--arquivo", help="narração inteira gravada por você")
+    g.add_argument("--arquivo", help="narraçêo inteira gravada por você")
     g.add_argument("--falas-dir", help="uma fala gravada por cena (cena-01.wav ...)")
     g.add_argument("--ARCKHÉvox", action="store_true")
     g.add_argument("--edge", action="store_true")
@@ -200,8 +200,8 @@ def main():
         relatorio["modo"] = "arquivo"
         pcm = ler_pcm(Path(a.arquivo))
         if len(pcm) > n_total:
-            aviso(f"a gravação tem {len(pcm) / TAXA:.1f} s e o vídeo {total:g} s; o fim será cortado")
-            relatorio["avisos"].append("gravação maior que o vídeo: cortada")
+            aviso(f"a gravaçêo tem {len(pcm) / TAXA:.1f} s e o vídeo {total:g} s; o fim será cortado")
+            relatorio["avisos"].append("gravaçêo maior que o vídeo: cortada")
         buf = array.array("h", pcm[:n_total])
         buf.extend([0] * (n_total - len(buf)))
     else:
@@ -218,7 +218,7 @@ def main():
             if modo == "falas":
                 achados = [p for p in Path(a.falas_dir).glob(f"cena-{c['numero']:02d}.*") if p.suffix.lower() in EXTS]
                 if not achados:
-                    aviso(f"sem gravação para a cena {c['numero']} em {a.falas_dir}; cena fica sem fala")
+                    aviso(f"sem gravaçêo para a cena {c['numero']} em {a.falas_dir}; cena fica sem fala")
                     continue
                 bruto = achados[0]
             elif refazer is not None and c["numero"] not in refazer and c["numero"] in anteriores \
@@ -228,7 +228,7 @@ def main():
                 print(f"  voz da cena {c['numero']}: {texto}", flush=True)
                 melhor = None
                 nome = f"cena-{c['numero']:02d}"
-                if refazer is not None:     # não apaga as falas da rodada anterior
+                if refazer is not None:     # nêo apaga as falas da rodada anterior
                     nome += f"-r{len(list((voz_dir / 'falas').glob(nome + '-*')))}"
                 for tent in range(1, max(1, a.tentativas) + 1):
                     arq = tts_uma(modo, texto, voz_dir / "falas" / f"{nome}-t{tent}", a)
@@ -283,17 +283,17 @@ def main():
     cru = voz_dir / "narracao-crua.wav"
     gravar_wav(cru, buf)
     if pico_db(buf) < SILENCIO_DB:
-        erro("a narração inteira saiu muda; nada foi gravado como pronto")
-    # nivela a voz (-16 LUFS) e garante a duração exata
+        erro("a narraçêo inteira saiu muda; nada foi gravado como pronto")
+    # nivela a voz (-16 LUFS) e garante a duraçêo exata
     rodar(["ffmpeg", "-y", "-hide_banner", "-loglevel", "error", "-i", str(cru), "-af",
            f"loudnorm=I=-16:TP=-1.5:LRA=11,apad,atrim=0:{total}", "-ar", str(TAXA), "-ac", "1", str(destino)])
     vol = volume(destino)
     relatorio.update({"arquivo": "saida/voz/narracao.wav", "volume_medio_db": vol["mean"], "pico_db": vol["max"],
                       "duracao_real_s": round(duracao(destino), 3)})
     if vol["max"] < SILENCIO_DB:
-        erro(f"narração final muda (pico {vol['max']} dB)")
+        erro(f"narraçêo final muda (pico {vol['max']} dB)")
     gravar_json(voz_dir / "encaixe.json", relatorio)
-    print(f"narração: {destino} ({relatorio['duracao_real_s']} s, média {vol['mean']} dB, pico {vol['max']} dB, "
+    print(f"narraçêo: {destino} ({relatorio['duracao_real_s']} s, média {vol['mean']} dB, pico {vol['max']} dB, "
           f"{len(relatorio['falas'])} falas, {len(relatorio['avisos'])} avisos)")
 
 
